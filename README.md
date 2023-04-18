@@ -3,12 +3,12 @@
   https://aarsh-patel.vercel.app/
 </h1>
 <p align="center">
-  The first iteration of <a href="https://aarsh-patel.vercel.app/" target="_blank">portfolio-muhesh-kumar.vercel.app</a> built with <a href="https://www.astro.build/" target="_blank">Astro</a> and hosted with <a href="https://www.vercel.com/" target="_blank">Vercel</a>
+  The first iteration of <a href="https://aarsh-patel.vercel.app/" target="_blank">Portfilio</a> built with <a href="https://www.astro.build/" target="_blank">Astro</a> and hosted with <a href="https://www.vercel.com/" target="_blank">Vercel</a>
 </p>
 
-![Dark Mode Demo](https://raw.githubusercontent.com/muhesh-kumar/portfolio/main/public/assets/images/dark-mode-preview.png)
+![Dark Mode Demo](https://raw.githubusercontent.com/muhesh-kumar/portfolio/main/public/assets/images/dark.png)
 
-![Light Mode Demo](https://raw.githubusercontent.com/muhesh-kumar/portfolio/main/public/assets/images/light-mode-preview.png)
+![Light Mode Demo](https://raw.githubusercontent.com/muhesh-kumar/portfolio/main/public/assets/images/light.png)
 
 ## 🛠 Installation & Set Up
 
