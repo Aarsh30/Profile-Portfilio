@@ -1,11 +1,9 @@
-<div align="center">
-  <img alt="Logo" src="public/assets/images/logo.png" height="75" />
-</div>
+
 <h1 align="center">
-   portfolio-muhesh-kumar.vercel.app
+  https://aarsh-patel.vercel.app/
 </h1>
 <p align="center">
-  The first iteration of <a href="https://portfolio-muhesh-kumar.vercel.app/" target="_blank">portfolio-muhesh-kumar.vercel.app</a> built with <a href="https://www.astro.build/" target="_blank">Astro</a> and hosted with <a href="https://www.vercel.com/" target="_blank">Vercel</a>
+  The first iteration of <a href="https://aarsh-patel.vercel.app/" target="_blank">portfolio-muhesh-kumar.vercel.app</a> built with <a href="https://www.astro.build/" target="_blank">Astro</a> and hosted with <a href="https://www.vercel.com/" target="_blank">Vercel</a>
 </p>
 
 ![Dark Mode Demo](https://raw.githubusercontent.com/muhesh-kumar/portfolio/main/public/assets/images/dark-mode-preview.png)
