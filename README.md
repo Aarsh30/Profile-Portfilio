@@ -6,9 +6,9 @@
   The first iteration of <a href="https://aarsh-patel.vercel.app/" target="_blank">Portfilio</a> built with <a href="https://www.astro.build/" target="_blank">Astro</a> and hosted with <a href="https://www.vercel.com/" target="_blank">Vercel</a>
 </p>
 
-![Dark Mode Demo](https://raw.githubusercontent.com/muhesh-kumar/portfolio/main/public/assets/images/dark.png)
+![Dark Mode Demo](https://raw.githubusercontent.com/Aarsh30/Profile-Portfilio/main/public/assets/images/dark.png)
 
-![Light Mode Demo](https://raw.githubusercontent.com/muhesh-kumar/portfolio/main/public/assets/images/light.png)
+![Light Mode Demo](https://raw.githubusercontent.com/Aarsh30/Profile-Portfilio/main/public/assets/images/light.png)
 
 ## 🛠 Installation & Set Up
 
