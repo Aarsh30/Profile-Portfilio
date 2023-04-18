@@ -1,0 +1,62 @@
+---
+import { motion } from 'framer-motion';
+
+import Header from '@components/Header.astro';
+import Bottombar from '@components/Bottombar.astro';
+import BackgroundBlurEllipse from '@elements/BackgroundBlurEllipse.astro';
+
+const animations = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+  exit: { opacity: 0 },
+};
+---
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Aarsh Patel</title>
+  </head>
+  <body class="dark:bg-darkBackground">
+    <Header />
+    <motion.main
+      className="font-spaceGrotesk text-fontColor dark:text-white flex flex-col gap-20 px-14 py-20 md:px-40 md:py-10 lg:px-60 lg:py-20"
+      variants={animations}
+      initial="initial"
+      animate="animate"
+      exit="exit"
+      client:load
+    >
+      <slot />
+    </motion.main>
+    <div class="flex justify-center">
+      <Bottombar />
+    </div>
+    <BackgroundBlurEllipse />
+
+    <script is:inline>
+      const theme = (() => {
+        if (
+          typeof localStorage !== 'undefined' &&
+          localStorage.getItem('theme')
+        ) {
+          return localStorage.getItem('theme');
+        }
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+          return 'dark';
+        }
+        return 'light';
+      })();
+
+      if (theme === 'light') {
+        document.documentElement.classList.remove('dark');
+      } else {
+        document.documentElement.classList.add('dark');
+      }
+      window.localStorage.setItem('theme', theme);
+    </script>
+  </body>
+</html>

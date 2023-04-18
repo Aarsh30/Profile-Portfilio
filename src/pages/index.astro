@@ -1,0 +1,25 @@
+---
+import Btn from '@elements/Btn.astro';
+import Heading from '@elements/Heading.astro';
+
+import Layout from '@layouts/Layout.astro';
+
+import '@/base.css';
+---
+
+<Layout>
+  <div class="flex flex-col gap-7">
+    <div class="flex flex-col gap-7 font-bold">
+      <Heading>Hello!👋🏻</Heading>
+      <Heading>This is Aarsh</Heading>
+      <Heading>I'm a Developer + Content Creator </Heading>
+    </div>
+    <p class="text-lg md:text-xl">I like to solve real world problems with software</p>
+  </div>
+  <div>
+    <Btn
+      btnText="Connect Me"
+      btnRedirectLink="https://www.linkedin.com/in/aarshpatel30/"
+    />
+  </div>
+</Layout>

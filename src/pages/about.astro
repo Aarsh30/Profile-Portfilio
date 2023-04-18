@@ -1,0 +1,43 @@
+---
+import Heading from '@elements/Heading.astro';
+import Btn from '@elements/Btn.astro';
+
+import Layout from '@layouts/Layout.astro';
+
+import '@/base.css';
+---
+
+<Layout>
+  <div class="flex flex-col gap-7 text-md md:text-xl">
+    <div class="flex flex-col gap-1">
+      <Heading>About Me 👨‍🦰</Heading>
+      <p>A brief intro to who i am and what i do:</p>
+    </div>
+    <div>
+      <p>
+        I am <span class="font-black text-3xl">Aarsh</span>
+      </p>
+    </div>
+    <div>
+      <p>
+       Aarsh is a Full Stack Devloper and Cloud Engineer based in India with a passion for building digital stuff. 
+       He likes to solving real-life problems with code. When not online, he loves Reads and Create Content for Social Media.
+        Currently, He is Pursing B.Tech in Computer Science. He publishes content Realted Self growth, College Reviews,Productivity,
+        Coding, Career Opportunities, Podcasts on his YouTube channel called
+        <br> <b><a href="https://www.youtube.com/channel/UC8lWeV0xePxysVetCBGvLzA">🎬"Aarsh Patel"</a></b> has around than 10k subscribers.
+        
+      </p>
+    </div>
+    <div>
+      <p>
+        I believe I've got the right skills and technologies to take your idea
+        and build a full fledged web application with maintainable code. I'm
+        open to explore and learn other fields of Software Engineering such as
+         Development, DevOps and Cyber Security.
+      </p>
+    </div>
+  </div>
+  <div>
+    <Btn btnText="Say Hello" />
+  </div>
+</Layout>

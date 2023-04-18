@@ -1,0 +1,42 @@
+---
+import Heading from '@elements/Heading.astro';
+import Skill from '@components/Skill.astro';
+
+import Layout from '@layouts/Layout.astro';
+
+import getImageURL from '@utils/getImageURL';
+
+import skillsData from '@data/skillsData';
+
+import '@/base.css';
+---
+
+<Layout>
+  <div class="flex flex-col gap-10 lg:gap-20">
+    <div class="flex flex-col gap-2 lg:gap-7 text-xl">
+      <Heading>Skills</Heading>
+      <p>Here are some of my skills</p>
+    </div>
+    <div class="flex flex-col gap-10 lg:gap-20 items-center justify-center">
+      {
+        skillsData.map((skill) => {
+          return (
+            <div class="flex flex-col gap-4 items-center justify-center">
+              <h2 class="text-lg font-bold">{skill.skillType}</h2>
+              <div class="flex items-center justify-center gap-8 flex-wrap">
+                {skill.skills.map((skillDetail) => {
+                  return (
+                    <Skill
+                      skillImageUrl={getImageURL(skillDetail.skillImageName)}
+                      skillName={skillDetail.skillName}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</Layout>

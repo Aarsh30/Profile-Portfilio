@@ -1,0 +1,62 @@
+---
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import type { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { motion } from 'framer-motion';
+import { clsx } from 'clsx';
+
+import { BLUE_COLOR, FONT_COLOR } from '@constants/index';
+
+export interface Props {
+  navItem: {
+    route: string;
+    icon: IconProp;
+  };
+}
+
+const { navItem } = Astro.props;
+
+const activePathName = Astro.url.pathname;
+
+const isActive = (pathName: string) => {
+  // FIXME: hacky fix because dev server gives /pathname and the production server gives /pathname/ so cannot say activePathName == pathName
+  return pathName == '/'
+    ? activePathName === pathName
+    : activePathName.includes(pathName);
+};
+---
+
+<a href={navItem.route}>
+  <motion.div
+    className={clsx(
+      'bg-bottomBarIconBgColor dark:bg-darkBackground rounded-2xl p-3 md:p-4',
+      isActive(navItem.route) && 'fa-bounce dark:bg-blue px-3 py-4'
+    )}
+    client:load
+  >
+    <FontAwesomeIcon
+      icon={navItem.icon}
+      size={isActive(navItem.route) ? '3x' : '2x'}
+      color={isActive(navItem.route) ? BLUE_COLOR : FONT_COLOR}
+      className={clsx(
+        'hidden md:block',
+        isActive(navItem.route)
+          ? 'text-blue dark:text-white'
+          : 'text-fontColor dark:text-slate-400'
+      )}
+      client:load
+    />
+
+    <FontAwesomeIcon
+      icon={navItem.icon}
+      size={isActive(navItem.route) ? 'xl' : 'lg'}
+      color={isActive(navItem.route) ? BLUE_COLOR : FONT_COLOR}
+      className={clsx(
+        'md:hidden',
+        isActive(navItem.route)
+          ? 'text-blue dark:text-white'
+          : 'text-fontColor dark:text-slate-400'
+      )}
+      client:load
+    />
+  </motion.div>
+</a>
