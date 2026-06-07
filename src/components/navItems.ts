@@ -1,38 +1,19 @@
 import {
   faHouse,
-  faLightbulb,
-  faRoad,
-  faToolbox,
-  faTrophy,
-  faUser,
-  faBookOpen
+  faBookOpen,
+  faBolt,
 } from '@fortawesome/free-solid-svg-icons';
 
 export default [
   {
     icon: faHouse,
-    route: '/#home',
+    route: '/#hero-root',
     label: 'Home',
   },
   {
-    icon: faUser,
-    route: '/#about',
-    label: 'About',
-  },
-  {
-    icon: faToolbox,
-    route: '/#skills',
-    label: 'Skills',
-  },
-  {
-    icon: faLightbulb,
-    route: '/#projects',
-    label: 'Projects',
-  },
-  {
-    icon: faTrophy,
-    route: '/#achievements',
-    label: 'Achievements',
+    icon: faBolt,
+    route: '/gear',
+    label: 'Gear',
   },
   {
     icon: faBookOpen,
@@ -40,3 +21,4 @@ export default [
     label: 'Blog',
   },
 ];
+

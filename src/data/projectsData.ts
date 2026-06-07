@@ -4,6 +4,14 @@ const getImageURL = (imageName: string) => `${imageDir}/${imageName}`;
 
 export default [
   {
+    projectName: 'Tracko - iOS Expense Manager',
+    projectDescription:
+      'An intuitive iOS expense tracker using Core Data for offline storage, featuring iOS Home/Lock screen widgets and custom analytics.',
+    projectImageURL: getImageURL('swift.svg'),
+    projectRepoURL: 'https://github.com/Aarsh30/Tracko',
+    projectLiveURL: '',
+  },
+  {
     projectName: 'Github User Finder',
     projectDescription:
       'An automated tool which helps user to find there friends and see their statics and analytics of user!',
