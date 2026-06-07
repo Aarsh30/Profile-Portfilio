@@ -10,7 +10,8 @@
     "preview": "astro preview",
     "astro": "astro",
     "lint": "yarn eslint --ext .js,.astro,.ts,.tsx src",
-    "format": "yarn prettier --write src"
+    "format": "yarn prettier --write src",
+    "postinstall": "node scripts/patch-sitemap.js"
   },
   "dependencies": {
     "@astrojs/react": "^1.2.2",
