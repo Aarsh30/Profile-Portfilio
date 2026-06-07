@@ -1,0 +1,34 @@
+---
+import Layout from '@layouts/Layout.astro';
+const posts = await Astro.glob('./*.md');
+const sortedPosts = posts.sort((a, b) => new Date(b.frontmatter.date).valueOf() - new Date(a.frontmatter.date).valueOf());
+---
+
+<Layout>
+  <section class="max-w-4xl mx-auto py-32 px-6 w-full min-h-screen">
+    
+    <div class="mb-16 text-center space-y-4">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-ash bg-carbon text-xs text-steel font-mono mb-4 shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-blue animate-pulse"></span>
+        Writings & Thoughts
+      </div>
+      <h1 class="text-5xl md:text-6xl font-bold text-snow tracking-tight">The Blog</h1>
+      <p class="text-fog max-w-2xl mx-auto text-lg">Detailed articles on software engineering, my personal journey, content creation, and building real-world applications.</p>
+    </div>
+    
+    <div class="grid gap-6 md:grid-cols-2">
+      {sortedPosts.map((post) => (
+        <a href={post.url} class="group flex flex-col justify-between p-8 bg-carbon border border-ash rounded-2xl hover:border-ferrite transition-all hover:-translate-y-1 shadow-sm hover:shadow-md">
+          <div>
+            <h2 class="text-2xl font-bold text-snow mb-3 group-hover:text-blue transition-colors leading-snug">{post.frontmatter.title}</h2>
+            <p class="text-fog mb-6 line-clamp-3 leading-relaxed">{post.frontmatter.description}</p>
+          </div>
+          <div class="flex items-center justify-between text-sm mt-auto font-mono">
+            <span class="text-steel">{post.frontmatter.date}</span>
+            <span class="text-blue opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">Read article &rarr;</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>

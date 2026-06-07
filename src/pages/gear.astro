@@ -1,0 +1,292 @@
+---
+import Layout from '@layouts/Layout.astro';
+import gearData from '@data/gearData';
+---
+
+<Layout>
+  <div class="gear-page">
+
+    <!-- Hero -->
+    <div class="gear-hero">
+      <span class="gear-tag">Tech Gear</span>
+      <h1 class="gear-title">My Setup & Recommendations</h1>
+      <p class="gear-subtitle">
+        Everything I use daily as a software engineer and content creator.
+        Affiliate links — I earn a small commission at no extra cost to you.
+      </p>
+    </div>
+
+    <!-- All categories as clean lists -->
+    <div class="gear-lists">
+      {gearData.map((cat) => (
+        <section class="gear-cat">
+
+          <!-- Category label -->
+          <div class="gear-cat-label">
+            <span>{cat.category}</span>
+          </div>
+
+          <!-- List rows -->
+          <ul class="gear-list">
+            {cat.items.map((item, i) => (
+              <li class="gear-row">
+                <div class="gear-row-left">
+                  <span class="gear-row-num">{String(i + 1).padStart(2, '0')}</span>
+                  <div class="gear-row-info">
+                    <span class="gear-row-name">{item.name}</span>
+                    {item.badge && <span class="gear-row-badge">{item.badge}</span>}
+                  </div>
+                </div>
+                <a
+                  href={item.affiliateUrl}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                  class="gear-row-link"
+                  aria-label={`View ${item.name} on Amazon`}
+                >
+                  View on Amazon
+                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" width="12" height="12">
+                    <path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))}
+
+      <!-- Bottom note -->
+      <div class="gear-note">
+        <p class="gear-note-main">
+          If you purchase anything through these links, <strong>all affiliate income goes entirely towards the well-being of needy people.</strong>
+          Your purchase — at zero extra cost to you — directly helps someone in need.
+        </p>
+        <p class="gear-note-sub">
+          Thank you for your support. It means the world.
+          &nbsp;·&nbsp;
+          <a href="mailto:contactaarsh@yahoo.com">Say hi for collabs →</a>
+        </p>
+      </div>
+    </div>
+
+  </div>
+</Layout>
+
+<style>
+  .gear-page {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 1.5rem 6rem;
+  }
+
+  /* ── Hero ─────────────────────────────────────── */
+  .gear-hero {
+    padding: 4rem 0 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .gear-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #188aec;
+    background: rgba(24,138,236,0.1);
+    border: 1px solid rgba(24,138,236,0.25);
+    padding: 0.28rem 0.8rem;
+    border-radius: 9999px;
+    width: fit-content;
+  }
+
+  .gear-title {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    color: var(--color-snow);
+    line-height: 1.1;
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+
+  .gear-subtitle {
+    font-size: 0.95rem;
+    color: var(--color-fog-text);
+    line-height: 1.7;
+    margin: 0;
+    max-width: 520px;
+  }
+
+  /* ── Lists container ──────────────────────────── */
+  .gear-lists {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  /* ── Category ─────────────────────────────────── */
+  .gear-cat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .gear-cat-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #188aec;
+    margin-bottom: 0.35rem;
+  }
+
+  /* ── List ─────────────────────────────────────── */
+  .gear-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid var(--color-ferrite-border);
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  /* ── Row ──────────────────────────────────────── */
+  .gear-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem 1.1rem;
+    border-bottom: 1px solid var(--color-ferrite-border);
+    background: var(--color-carbon-surface);
+    transition: background 0.15s ease;
+  }
+
+  .gear-row:last-child {
+    border-bottom: none;
+  }
+
+  .gear-row:hover {
+    background: rgba(24, 138, 236, 0.04);
+  }
+
+  /* Left side */
+  .gear-row-left {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    min-width: 0;
+  }
+
+  .gear-row-num {
+    font-size: 0.65rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-steel-text);
+    flex-shrink: 0;
+    letter-spacing: 0.04em;
+    min-width: 1.5rem;
+  }
+
+  .gear-row-info {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    min-width: 0;
+    flex-wrap: wrap;
+  }
+
+  .gear-row-name {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--color-snow);
+  }
+
+  .gear-row-badge {
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #188aec;
+    background: rgba(24, 138, 236, 0.1);
+    border: 1px solid rgba(24, 138, 236, 0.25);
+    padding: 0.15rem 0.5rem;
+    border-radius: 9999px;
+    flex-shrink: 0;
+  }
+
+  /* Right side — link */
+  .gear-row-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.76rem;
+    font-weight: 600;
+    color: #188aec;
+    text-decoration: none;
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid rgba(24, 138, 236, 0.28);
+    border-radius: 9999px;
+    background: rgba(24, 138, 236, 0.07);
+    transition: background 0.15s, border-color 0.15s, transform 0.15s;
+  }
+
+  .gear-row-link:hover {
+    background: rgba(24, 138, 236, 0.16);
+    border-color: rgba(24, 138, 236, 0.5);
+    transform: translateX(2px);
+  }
+
+  /* ── Bottom note ──────────────────────────────── */
+  .gear-note {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.65rem;
+    text-align: center;
+    padding: 1.75rem 2rem;
+    border-radius: 14px;
+    border: 1px solid rgba(24, 138, 236, 0.2);
+    background: rgba(24, 138, 236, 0.04);
+    margin-top: 0.5rem;
+  }
+
+
+
+  .gear-note-main {
+    font-size: 0.87rem;
+    color: var(--color-mist-text);
+    line-height: 1.7;
+    margin: 0;
+    max-width: 460px;
+  }
+
+  .gear-note-main strong {
+    color: #188aec;
+    font-weight: 700;
+  }
+
+  .gear-note-sub {
+    font-size: 0.76rem;
+    color: var(--color-steel-text);
+    margin: 0;
+  }
+
+  .gear-note-sub a {
+    color: #188aec;
+    text-decoration: none;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(24,138,236,0.3);
+  }
+
+  .gear-note-sub a:hover {
+    color: #4fa8f5;
+    border-color: rgba(79,168,245,0.5);
+  }
+</style>

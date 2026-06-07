@@ -1,115 +1,58 @@
 export default [
   {
     skillType: 'Programming Languages',
+    categoryColor: '#188aec',
+    categoryIcon: '{ }',
     skills: [
-      {
-        skillName: 'C',
-        skillImageName: 'c.png',
-      },
-      {
-        skillName: 'C++',
-        skillImageName: 'cpp.png',
-      },
-      {
-        skillName: 'Python',
-        skillImageName: 'python.png',
-      },
-      {
-        skillName: 'Java',
-        skillImageName: 'java.png',
-      },
-      {
-        skillName: 'JavaScript',
-        skillImageName: 'javascript.png',
-      },
-      // {
-      //   skillName: 'TypeScript',
-      //   skillImageName: 'typescript-2.png',
-      // },
+      { skillName: 'Swift',      color: '#188aec' },
+      { skillName: 'Go',         color: '#188aec' },
+      { skillName: 'Python',     color: '#188aec' },
+      { skillName: 'C++',        color: '#188aec' },
+      { skillName: 'Java',       color: '#188aec' },
+      { skillName: 'JavaScript', color: '#188aec' },
+      { skillName: 'C',          color: '#188aec' },
     ],
   },
   {
-    skillType: 'Front End Technologies',
+    skillType: 'iOS & Front End',
+    categoryColor: '#188aec',
+    categoryIcon: '◈',
     skills: [
-      { skillName: 'HTML', skillImageName: 'html.png' },
-      {
-        skillName: 'CSS',
-        skillImageName: 'css.png',
-      },
-      {
-        skillName: 'SASS',
-        skillImageName: 'sass.png',
-      },
-      {
-        skillName: 'ReactJS',
-        skillImageName: 'react.png',
-      },
+      { skillName: 'SwiftUI',    color: '#188aec' },
+      { skillName: 'UIKit',      color: '#188aec' },
+      { skillName: 'ReactJS',    color: '#188aec' },
+      { skillName: 'HTML',       color: '#188aec' },
+      { skillName: 'CSS / SASS', color: '#188aec' },
     ],
   },
   {
-    skillType: 'Back End Technologies',
+    skillType: 'Back End & Databases',
+    categoryColor: '#188aec',
+    categoryIcon: '⬡',
     skills: [
-      {
-        skillName: 'NodeJS',
-        skillImageName: 'nodejs.png',
-      },
-      {
-        skillName: 'ExperssJS',
-        skillImageName: '12 (2).png',
-      },
-      
-      {
-        skillName: 'MongoDB',
-        skillImageName: 'mongodb.png',
-      },
-      {
-        skillName: 'MySQL',
-        skillImageName: '12 (1).png',
-      },
+      { skillName: 'Node.js',  color: '#188aec' },
+      { skillName: 'Express',  color: '#188aec' },
+      { skillName: 'MongoDB',  color: '#188aec' },
+      { skillName: 'MySQL',    color: '#188aec' },
     ],
   },
   {
-    skillType: 'Tools',
+    skillType: 'DevOps & Tools',
+    categoryColor: '#188aec',
+    categoryIcon: '⚙',
     skills: [
-      {
-        skillName: 'Git',
-        skillImageName: 'git.png',
-      },
-      {
-        skillName: 'Linux',
-        skillImageName: 'linux.png',
-      },
-      {
-        skillName: 'Kali',
-        skillImageName: '15.png',
-      },
+      { skillName: 'Git',   color: '#188aec' },
+      { skillName: 'Linux', color: '#188aec' },
+      { skillName: 'Kali',  color: '#188aec' },
     ],
   },
   {
     skillType: 'Cloud Technology',
+    categoryColor: '#188aec',
+    categoryIcon: '☁',
     skills: [
-      {
-        skillName: 'Microsoft Azure',
-        skillImageName: 'azure.png',
-      },
-      {
-        skillName: 'Google Cloud Platform',
-        skillImageName: '13.png',
-      },
-     
+      { skillName: 'Microsoft Azure',       color: '#188aec' },
+      { skillName: 'Google Cloud Platform', color: '#188aec' },
     ],
   },
-  // {
-  //   skillType: 'Other',
-  //   skills: [
-  //     {
-  //       skillName: 'Algorithms',
-  //       skillImageName: 'algorithms.png',
-  //     },
-  //     {
-  //       skillName: 'Competitive Programming',
-  //       skillImageName: 'codeforces.svg',
-  //     },
-  //   ],
-  // },
 ];

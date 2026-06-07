@@ -1,6 +1,18 @@
 {
   "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "skipLibCheck": true,
+
     "baseUrl": ".",
+    "ignoreDeprecations": "6.0",
     "paths": {
       "@/*": ["src/*"],
       "@data/*": ["src/data/*"],
@@ -10,9 +22,8 @@
       "@components/*": ["src/components/*"],
       "@elements/*": ["src/components/elements/*"]
     },
-    "importsNotUsedAsValues": "error",
+    "verbatimModuleSyntax": true,
     "jsx": "react-jsx",
     "jsxImportSource": "react"
-  },
-  "extends": "astro/tsconfigs/strict"
+  }
 }
