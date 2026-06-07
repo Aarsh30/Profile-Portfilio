@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 
 import Header from '@components/Header.astro';
 import Footer from '@components/Footer.astro';
+import Bottombar from '@components/Bottombar.astro';
 import '@/base.css';
 
 const animations = {
@@ -16,7 +17,11 @@ const animations = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="/assets/icons/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png" />
+    <link rel="manifest" href="/assets/icons/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
     <title>Aarsh Patel - Portfolio</title>
     <style>
@@ -67,6 +72,7 @@ const animations = {
       <slot />
     </motion.main>
     <Footer />
+    <Bottombar />
 
     <script is:inline>
       const theme = (() => {

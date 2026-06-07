@@ -91,7 +91,7 @@ import skillsData from '@data/skillsData';
 
   <!-- ── LAYER 5 ──  Foreground content (text depth 0.30, image depth 0.42) ── -->
   <div class="absolute inset-0 flex items-center z-10">
-    <div class="w-full max-w-[1080px] mx-auto px-6 md:px-20 lg:px-40 flex flex-col md:flex-row items-center justify-between gap-12 md:gap-8">
+    <div class="w-full max-w-[1200px] mx-auto px-6 md:px-12 lg:px-16 flex flex-col md:flex-row items-center justify-between gap-12 md:gap-8">
 
       <!-- TEXT — moves at depth 0.30 -->
       <div id="l5-text" class="flex-1 flex flex-col gap-5" style="will-change:transform;">
@@ -104,36 +104,16 @@ import skillsData from '@data/skillsData';
         </h1>
 
         <h2 class="text-[clamp(1rem,2.2vw,1.4rem)] font-medium text-mist m-0">
-          Engineer, a trade of all stack + Content Creator
+          Software Engineer, a trade of all stack + Content Creator
         </h2>
 
         <p class="text-[15px] text-fog leading-[1.7] max-w-[380px] m-0">
           Building real-world software solutions — one elegant commit at a time.
         </p>
-
-        <!-- stat strip -->
-        <div class="flex items-center gap-5 font-mono text-[11px] text-steel mt-1">
-          <div class="flex flex-col gap-0.5">
-            <span class="text-[20px] font-bold text-snow font-inherit">100+</span>
-            <span>LeetCode</span>
-          </div>
-          <div class="w-px h-8 bg-ash"></div>
-          <div class="flex flex-col gap-0.5">
-            <span class="text-[20px] font-bold text-snow font-inherit">10k+</span>
-            <span>YT Subs</span>
-          </div>
-          <div class="w-px h-8 bg-ash"></div>
-          <div class="flex flex-col gap-0.5">
-            <span class="text-[20px] font-bold text-snow font-inherit">3+</span>
-            <span>Certs</span>
-          </div>
-        </div>
+        <!-- stat strip removed -->
 
         <div class="flex items-center gap-4 flex-wrap mt-1">
           <Btn btnText="Connect Me" btnRedirectLink="https://www.linkedin.com/in/aarshpatel30/" />
-          <a href="/#projects" class="text-[14px] text-fog hover:text-snow underline underline-offset-4 transition-colors">
-            View Projects →
-          </a>
         </div>
 
       </div>
@@ -141,11 +121,11 @@ import skillsData from '@data/skillsData';
       <!-- IMAGE — moves at depth 0.42 (fastest = closest to viewer) -->
       <div id="l5-img" class="flex-1 flex justify-center items-center relative" style="will-change:transform;">
         <!-- halo glow behind image -->
-        <div class="absolute w-[450px] h-[450px] rounded-full bg-[#188aec]/15 blur-[90px] pointer-events-none"></div>
+        <div class="absolute w-[280px] h-[280px] md:w-[450px] md:h-[450px] rounded-full bg-[#188aec]/15 blur-[60px] md:blur-[90px] pointer-events-none"></div>
         <img
           src="/assets/images/3d model.png"
           alt="Aarsh Patel — Software Engineer"
-          class="relative w-[110%] max-w-[650px] object-contain select-none transition-transform duration-150 ease-out drop-shadow-[0_20px_70px_rgba(24,138,236,0.3)] animate-float transform lg:scale-110"
+          class="relative w-[90%] md:w-[110%] max-w-[650px] object-contain select-none transition-transform duration-150 ease-out drop-shadow-[0_20px_70px_rgba(24,138,236,0.3)] animate-float transform lg:scale-110"
           draggable="false"
         />
       </div>
@@ -159,7 +139,7 @@ import skillsData from '@data/skillsData';
 </div>
 <!-- end hero -->
 
-<div class="max-w-[1080px] mx-auto w-full px-6 md:px-20 lg:px-40 flex flex-col gap-28 py-20">
+<div class="max-w-[1200px] mx-auto w-full px-6 md:px-12 lg:px-16 flex flex-col gap-28 py-20">
   <!-- About Section -->
   <section id="about" class="scroll-mt-24 flex flex-col gap-10">
     <div class="flex flex-col gap-7 text-md md:text-lg">
@@ -195,7 +175,7 @@ import skillsData from '@data/skillsData';
             <svg class="w-4 h-4 text-[#188aec] flex-shrink-0 mt-1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
               <polyline points="9 18 15 12 9 6"></polyline>
             </svg>
-            <span>Built a community of 25,000+ learners across YouTube, LinkedIn, and other platforms.</span>
+            <span>Built a community of 35,000+ learners across YouTube, LinkedIn, and other platforms.</span>
           </li>
           <li class="flex items-start gap-2.5">
             <svg class="w-4 h-4 text-[#188aec] flex-shrink-0 mt-1.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -210,83 +190,80 @@ import skillsData from '@data/skillsData';
         <p>I believe great software is built by continuously learning, experimenting, and staying curious—and that's the mindset I bring to everything I do.</p>
       </div>
     </div>
-    <div class="mt-2">
-      <Btn btnText="Say Hello" btnRedirectLink="mailto:contactaarsh@yahoo.com" />
-    </div>
   </section>
 
   <!-- Purpose & Impact Section -->
   <section id="purpose" class="scroll-mt-24 flex flex-col gap-10 py-10">
     <div class="flex flex-col gap-2">
-      <Heading>Purpose & Impact</Heading>
+      <div class="flex items-center gap-2">
+        <span class="w-1.5 h-6 bg-[#188aec] rounded-full"></span>
+        <Heading>Purpose & Impact</Heading>
+      </div>
       <p class="text-fog text-[15px]">The core mission that drives my engineering and content creation journey.</p>
     </div>
 
     <div class="purpose-container">
       <div class="purpose-spotlight">
         <div class="purpose-spotlight-content">
-          <div class="purpose-badge">MISSION & VISION</div>
-          <h3 class="purpose-quote">"To impact education in every single household and support the well-being of people."</h3>
+          <div class="purpose-badge">
+            <span class="pulse-dot"></span>
+            MISSION & VISION
+          </div>
+          <h3 class="purpose-quote">
+            "To <span class="text-gradient">impact education</span> in every single household and support the <span class="text-gradient-alt">well-being</span> of people."
+          </h3>
           <p class="purpose-subtext">
-            I believe that quality technical education and personal development should be accessible to everyone. My journey as a software engineer and content creator is driven by building platforms that bring learning to every home while supporting wellness and community growth.
+            I believe that high-quality technical education and personal development are fundamental rights. My engineering and content creation efforts are dedicated to building scalable platforms that bring structured learning directly to homes, while actively supporting community wellness and outreach.
           </p>
         </div>
         <div class="purpose-visual">
           <div class="glowing-orb-container">
             <div class="glowing-orb-pulse"></div>
-            <svg viewBox="0 0 100 100" class="purpose-svg" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Futuristic SVG Graphic -->
+            <svg viewBox="0 0 100 100" class="purpose-svg animate-float" fill="none" xmlns="http://www.w3.org/2000/svg">
               <defs>
-                <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
-                  <path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(24, 138, 236, 0.08)" stroke-width="0.5"/>
-                </pattern>
-                <linearGradient id="blue-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <filter id="neon-glow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="3.5" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+                <linearGradient id="main-grad" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stop-color="#188aec" />
-                  <stop offset="100%" stop-color="#8b5cf6" />
+                  <stop offset="50%" stop-color="#8b5cf6" />
+                  <stop offset="100%" stop-color="#ec4899" />
                 </linearGradient>
+                <radialGradient id="center-glow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stop-color="#188aec" stop-opacity="0.15" />
+                  <stop offset="100%" stop-color="transparent" stop-opacity="0" />
+                </radialGradient>
               </defs>
-              <rect width="100%" height="100%" fill="url(#grid)" />
-              <circle cx="50" cy="50" r="38" stroke="rgba(24, 138, 236, 0.25)" stroke-width="1.5" stroke-dasharray="4 3" />
-              <circle cx="50" cy="50" r="32" stroke="#188aec" stroke-width="1" opacity="0.3" />
+              <circle cx="50" cy="50" r="45" fill="url(#center-glow)" />
               
-              <!-- Education Motif (Graduation cap structure) -->
-              <path d="M50 32 L75 42 L50 52 L25 42 Z" fill="url(#blue-grad)" opacity="0.85" />
-              <path d="M35 46.5 V58 C35 62 50 66 50 66 C50 66 65 62 65 58 V46.5" stroke="#188aec" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M68 45.5 V59" stroke="#8b5cf6" stroke-width="1.5" stroke-linecap="round" />
-              <circle cx="68" cy="60" r="2.5" fill="#8b5cf6" />
+              <circle cx="50" cy="50" r="40" stroke="rgba(24, 138, 236, 0.15)" stroke-width="1" />
+              <circle cx="50" cy="50" r="32" stroke="rgba(139, 92, 246, 0.1)" stroke-dasharray="3 4" stroke-width="1.2" />
+              <circle cx="50" cy="50" r="24" stroke="url(#main-grad)" stroke-width="0.8" opacity="0.4" />
+
+              <g filter="url(#neon-glow)">
+                <path d="M50 20 L75 35 L50 50 L25 35 Z" stroke="url(#main-grad)" stroke-width="1.5" stroke-linejoin="round" />
+                <path d="M35 41 V62 C35 67 50 72 50 72 C50 72 65 67 65 62 V41" stroke="#188aec" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M69 39 V62" stroke="#8b5cf6" stroke-width="1.2" stroke-linecap="round" />
+                <circle cx="69" cy="63.5" r="2" fill="#8b5cf6" />
+                <circle cx="50" cy="20" r="3.5" fill="#188aec" />
+                <circle cx="75" cy="35" r="3.5" fill="#8b5cf6" />
+                <circle cx="25" cy="35" r="3.5" fill="#ec4899" />
+              </g>
+
+              <line x1="50" y1="50" x2="50" y2="72" stroke="rgba(24, 138, 236, 0.3)" stroke-width="1" stroke-dasharray="2 2" />
+              <circle cx="50" cy="50" r="4.5" fill="url(#main-grad)" filter="url(#neon-glow)" />
               
-              <!-- Well-being Motif (Heart in the center/underneath) -->
-              <path d="M50 61 C50 61 46 57.5 43 54.5 C40 51.5 39 49 41 46.5 C43.5 43.5 47.5 45.5 50 48.5 C52.5 45.5 56.5 43.5 59 46.5 C61 49 60 51.5 57 54.5 C54 57.5 50 61 50 61 Z" fill="#188aec" opacity="0.9" transform="translate(0, 4) scale(0.9) translate(5, -5)" />
+              <path d="M15 50 C 30 40, 35 60, 50 50" stroke="rgba(24, 138, 236, 0.2)" stroke-width="1" />
+              <path d="M50 50 C 65 40, 70 60, 85 50" stroke="rgba(139, 92, 246, 0.2)" stroke-width="1" />
+              <circle cx="15" cy="50" r="2" fill="#188aec" />
+              <circle cx="85" cy="50" r="2" fill="#8b5cf6" />
             </svg>
           </div>
-        </div>
-      </div>
-
-      <div class="purpose-pillars">
-        <!-- Pillar 1: Education -->
-        <div class="pillar-card">
-          <div class="pillar-icon-wrapper">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
-              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
-              <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"/>
-            </svg>
-          </div>
-          <h4 class="pillar-title">Household Education</h4>
-          <p class="pillar-desc">
-            Empowering every single household with high-quality tech learning. Through scalable online platforms like swe180.com, swiftyn.com, and community initiatives, I make engineering knowledge accessible to all.
-          </p>
-        </div>
-
-        <!-- Pillar 2: Well-being -->
-        <div class="pillar-card">
-          <div class="pillar-icon-wrapper">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6">
-              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-            </svg>
-          </div>
-          <h4 class="pillar-title">Social Well-being</h4>
-          <p class="pillar-desc">
-            Extending support to improve the quality of life and well-being of needy people. Leveraging my resources, network, and development skills, I actively support and build tools for community wellness and outreach programs.
-          </p>
         </div>
       </div>
     </div>
@@ -295,28 +272,74 @@ import skillsData from '@data/skillsData';
   <!-- Skills Section -->
   <section id="skills" class="scroll-mt-24 flex flex-col gap-10 py-10">
     <div class="flex flex-col gap-2">
-      <Heading>Skills</Heading>
-      <p class="text-fog text-[15px]">My technical toolkit — languages, frameworks, and platforms I work with.</p>
+      <div class="flex items-center gap-2">
+        <span class="w-1.5 h-6 bg-[#188aec] rounded-full"></span>
+        <Heading>Skills & Expertise</Heading>
+      </div>
+      <p class="text-fog text-[15px]">My technical toolkit and professional impact — spanning iOS engineering, backend systems, AI workflows, and education.</p>
     </div>
+
+
 
     <!-- Bento Grid -->
     <div class="skills-bento">
+      <!-- Card 1: Programming Languages -->
+      <div class="skill-card" style={`--cat-color: ${skillsData[0].categoryColor};`}>
+        <div class="skill-card-header">
+          <span class="skill-card-icon">{skillsData[0].categoryIcon}</span>
+          <h3 class="skill-card-title">{skillsData[0].skillType}</h3>
+        </div>
+        <div class="skill-pills">
+          {skillsData[0].skills.map((s) => (
+            <Skill skillName={s.skillName} color={skillsData[0].categoryColor} highlighted={s.highlighted} />
+          ))}
+        </div>
+      </div>
+
+      <!-- Horizontal Stack for iOS and AI Engineering only -->
+      <div class="skills-row-two-col">
+        <!-- Card 2: iOS Development -->
+        <div class="skill-card" style={`--cat-color: ${skillsData[1].categoryColor};`}>
+          <div class="skill-card-header">
+            <span class="skill-card-icon">{skillsData[1].categoryIcon}</span>
+            <h3 class="skill-card-title">{skillsData[1].skillType}</h3>
+          </div>
+          <div class="skill-pills">
+            {skillsData[1].skills.map((s) => (
+              <Skill skillName={s.skillName} color={skillsData[1].categoryColor} highlighted={s.highlighted} />
+            ))}
+          </div>
+        </div>
+
+        <!-- Card 3: AI Engineering -->
+        <div class="skill-card" style={`--cat-color: ${skillsData[2].categoryColor};`}>
+          <div class="skill-card-header">
+            <span class="skill-card-icon">{skillsData[2].categoryIcon}</span>
+            <h3 class="skill-card-title">{skillsData[2].skillType}</h3>
+          </div>
+          <div class="skill-pills">
+            {skillsData[2].skills.map((s) => (
+              <Skill skillName={s.skillName} color={skillsData[2].categoryColor} highlighted={s.highlighted} />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- Remaining Cards -->
       {
-        skillsData.map((category) => (
-          <div
-            class="skill-card"
-            style={`--cat-color: ${category.categoryColor};`}
-          >
-            <!-- accent bar + header -->
+        skillsData.slice(3).map((category) => (
+          <div class="skill-card" style={`--cat-color: ${category.categoryColor};`}>
             <div class="skill-card-header">
               <span class="skill-card-icon">{category.categoryIcon}</span>
               <h3 class="skill-card-title">{category.skillType}</h3>
             </div>
-
-            <!-- pill group -->
             <div class="skill-pills">
               {category.skills.map((s) => (
-                <Skill skillName={s.skillName} color={s.color} />
+                <Skill 
+                  skillName={s.skillName} 
+                  color={category.categoryColor} 
+                  highlighted={s.highlighted}
+                />
               ))}
             </div>
           </div>
@@ -417,16 +440,68 @@ import skillsData from '@data/skillsData';
   <section id="achievements" class="scroll-mt-24 flex flex-col md:flex-row items-center justify-between gap-10 py-10">
     <div class="flex-1 flex flex-col gap-5">
       <Heading>Achievements</Heading>
-      <p class="text-fog">Some of my achievements over the past few years:</p>
-      <div>
-         <ul class="list-disc pl-5 flex flex-col gap-3 text-mist text-lg md:text-xl">
-           <li>AIR 256 in CodeJam Farewell in Round A.</li>
-           <li>Solved 100+ Problems on LeetCode.</li>
-           <li>Microsoft Azure Fundamentals Certified.</li>
-           <li>Google Cloud Platform Foundational.</li>
-           <li>Top 10 in SDG GDSC Hackathon.</li>
-           <li>Top 10 in DataBid Hackathon.</li>
-         </ul>
+      <p class="text-fog">Some of my achievements over the past few years (mix of college days and now):</p>
+      <div class="flex flex-col gap-5 mt-2">
+        <!-- Category 1: Professional Recognition & Impact -->
+        <div class="achievement-category border-l-2 border-[#188aec]">
+          <h4 class="achievement-cat-title">
+            <svg class="w-4 h-4 text-[#188aec] mr-2 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+            Professional Recognition & Impact
+          </h4>
+          <ul class="achievement-list">
+            <li>
+              <span class="bullet">✦</span>
+              <span>Emerging Tripper in Q3 FY 25-26</span>
+            </li>
+            <li>
+              <span class="bullet">✦</span>
+              <span>Top 10 in MMT Gen AI Hackathon</span>
+            </li>
+            <li>
+              <span class="bullet">✦</span>
+              <span>Top 15 in Build for Her Hackathon</span>
+            </li>
+            <li>
+              <span class="bullet">✦</span>
+              <span>Delivered sessions and Conducted workshops on Gen AI & iOS topics</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Category 2: Academic, Hackathons & Technical Excellence -->
+        <div class="achievement-category border-l-2 border-[#8b5cf6]">
+          <h4 class="achievement-cat-title">
+            <svg class="w-4 h-4 text-[#8b5cf6] mr-2 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+              <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path>
+            </svg>
+            Academic, Hackathons & Technical Excellence
+          </h4>
+          <ul class="achievement-list">
+            <li>
+              <span class="bullet">✦</span>
+              <span>Branch Topper in CSE - Networking & Security at VIT '24</span>
+            </li>
+            <li>
+              <span class="bullet">✦</span>
+              <span>AIR 256 in CodeJam Farewell in Round A</span>
+            </li>
+            <li>
+              <span class="bullet">✦</span>
+              <span>All Microsoft Azure Fundamentals Certified</span>
+            </li>
+            <li>
+              <span class="bullet">✦</span>
+              <span>Top 10 in SDG GDSC Hackathon</span>
+            </li>
+            <li>
+              <span class="bullet">✦</span>
+              <span>Top 10 in DataBid Hackathon</span>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
     <div class="flex-1 flex justify-center items-center">
@@ -589,34 +664,82 @@ import skillsData from '@data/skillsData';
 </Layout>
 
 <style>
+
   /* ── Skills Bento Grid ─────────────────────────────── */
   .skills-bento {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1rem;
+    gap: 1.25rem;
+  }
+
+  .skills-row-two-col {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .skills-row-two-col {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
   }
 
   @media (min-width: 640px) {
     .skills-bento {
       grid-template-columns: repeat(2, 1fr);
     }
-    /* First card (Programming Languages) spans full width */
-    .skills-bento > :first-child {
-      grid-column: 1 / -1;
+    /* Let Programming Languages and the iOS/AI wrapper span full width */
+    .skills-bento > :nth-child(1),
+    .skills-bento > :nth-child(2) {
+      grid-column: span 2;
+    }
+    
+    /* Software Architecture and Leadership can also span 2 cols to look balanced on tablet */
+    .skills-bento > :nth-child(3),
+    .skills-bento > :nth-child(7) {
+      grid-column: span 2;
     }
   }
 
   @media (min-width: 1024px) {
     .skills-bento {
       grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
     }
-    /* Programming Languages: full-width banner */
-    .skills-bento > :first-child {
-      grid-column: 1 / -1;
+    
+    /* 3-Column bento grid spans */
+    .skills-bento > :nth-child(1) {
+      grid-column: span 3; /* Programming Languages full width */
     }
-    /* iOS & Front End: 2 cols */
+    
     .skills-bento > :nth-child(2) {
-      grid-column: span 2;
+      grid-column: span 3; /* iOS & AI row wrapper spans full width */
+    }
+    
+    .skills-bento > :nth-child(3) {
+      grid-column: span 2; /* Software Engineering & Architecture spans 2 columns */
+    }
+    
+    .skills-bento > :nth-child(4) {
+      grid-column: span 1; /* Backend Development spans 1 column */
+    }
+    
+    .skills-bento > :nth-child(5) {
+      grid-column: span 1; /* Databases spans 1 column */
+    }
+    
+    .skills-bento > :nth-child(6) {
+      grid-column: span 2; /* Cloud & DevOps spans 2 columns */
+    }
+    
+    .skills-bento > :nth-child(7) {
+      grid-column: span 2; /* Leadership & Professional spans 2 columns */
+    }
+    
+    .skills-bento > :nth-child(8) {
+      grid-column: span 1; /* Content Creation & Education spans 1 column */
     }
   }
 
@@ -712,14 +835,16 @@ import skillsData from '@data/skillsData';
   .purpose-spotlight {
     position: relative;
     overflow: hidden;
-    background: var(--color-carbon-surface);
-    border: 1px solid rgba(24, 138, 236, 0.2);
+    background: linear-gradient(135deg, rgba(24, 138, 236, 0.05) 0%, rgba(139, 92, 246, 0.02) 50%, rgba(20, 20, 20, 0.4) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(24, 138, 236, 0.18);
     border-radius: 24px;
     padding: 2.25rem;
     display: flex;
     flex-direction: column-reverse;
     gap: 2rem;
-    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
   }
 
   @media (min-width: 768px) {
@@ -732,29 +857,48 @@ import skillsData from '@data/skillsData';
   }
 
   .purpose-spotlight:hover {
-    border-color: rgba(24, 138, 236, 0.45);
-    box-shadow: 0 12px 50px -15px rgba(24, 138, 236, 0.25);
+    border-color: rgba(24, 138, 236, 0.4);
+    box-shadow: 0 16px 50px -15px rgba(24, 138, 236, 0.25);
+    transform: translateY(-2px);
   }
 
   .purpose-spotlight-content {
     flex: 1.3;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 1.1rem;
   }
 
   .purpose-badge {
     display: inline-flex;
+    align-items: center;
     align-self: flex-start;
-    padding: 0.25rem 0.75rem;
-    background: rgba(24, 138, 236, 0.08);
+    padding: 0.3rem 0.85rem;
+    background: rgba(24, 138, 236, 0.06);
     border: 1px solid rgba(24, 138, 236, 0.2);
     color: #188aec;
     border-radius: 9999px;
     font-family: var(--font-mono);
-    font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.05em;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  .pulse-dot {
+    width: 6px;
+    height: 6px;
+    background-color: #188aec;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+    box-shadow: 0 0 8px #188aec;
+    animation: pulseDot 2s infinite;
+  }
+
+  @keyframes pulseDot {
+    0% { transform: scale(0.95); opacity: 0.5; }
+    50% { transform: scale(1.3); opacity: 1; box-shadow: 0 0 10px #188aec; }
+    100% { transform: scale(0.95); opacity: 0.5; }
   }
 
   .purpose-quote {
@@ -763,18 +907,33 @@ import skillsData from '@data/skillsData';
     line-height: 1.4;
     color: var(--color-snow);
     margin: 0;
+    letter-spacing: -0.01em;
   }
 
   @media (min-width: 768px) {
     .purpose-quote {
-      font-size: 1.8rem;
+      font-size: 1.85rem;
     }
   }
 
+  .text-gradient {
+    background: linear-gradient(90deg, #188aec 0%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-alt {
+    background: linear-gradient(90deg, #8b5cf6 0%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
   .purpose-subtext {
-    font-size: 0.95rem;
+    font-size: 0.92rem;
     color: var(--color-mist-text);
-    line-height: 1.6;
+    line-height: 1.7;
     margin: 0;
   }
 
@@ -797,8 +956,8 @@ import skillsData from '@data/skillsData';
 
   @media (min-width: 768px) {
     .glowing-orb-container {
-      width: 200px;
-      height: 200px;
+      width: 220px;
+      height: 220px;
     }
   }
 
@@ -820,67 +979,10 @@ import skillsData from '@data/skillsData';
     width: 100%;
     height: 100%;
     z-index: 2;
+    filter: drop-shadow(0 8px 16px rgba(24, 138, 236, 0.15));
   }
 
-  .purpose-pillars {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
 
-  @media (min-width: 640px) {
-    .purpose-pillars {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  .pillar-card {
-    background: var(--color-carbon-surface);
-    border: 1px solid var(--color-ferrite-border);
-    border-radius: 20px;
-    padding: 1.75rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-  }
-
-  .pillar-card:hover {
-    transform: translateY(-2px);
-    border-color: rgba(24, 138, 236, 0.35);
-    box-shadow: 0 8px 30px -12px rgba(24, 138, 236, 0.2);
-  }
-
-  .pillar-icon-wrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 12px;
-    background: rgba(24, 138, 236, 0.08);
-    color: #188aec;
-    transition: background-color 0.2s ease, color 0.2s ease;
-  }
-
-  .pillar-card:hover .pillar-icon-wrapper {
-    background: #188aec;
-    color: var(--color-carbon-surface);
-  }
-
-  .pillar-title {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--color-snow);
-    margin: 0;
-  }
-
-  .pillar-desc {
-    font-size: 0.85rem;
-    color: var(--color-fog-text);
-    line-height: 1.6;
-    margin: 0;
-  }
 
   /* ── Social Cards Grid ────────────────────────────── */
   .social-card-link {
@@ -1077,6 +1179,60 @@ import skillsData from '@data/skillsData';
     color: var(--color-fog-text);
     line-height: 1.5;
     margin: 0;
+  }
+
+  /* ── Achievements ───────────────────────────────────── */
+  .achievement-category {
+    background: var(--color-carbon-surface);
+    border: 1px solid var(--color-ferrite-border);
+    border-radius: 18px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .achievement-category:hover {
+    transform: translateY(-2px);
+    border-color: rgba(24, 138, 236, 0.25);
+    box-shadow: 0 8px 30px -15px rgba(24, 138, 236, 0.15);
+  }
+
+  .achievement-cat-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-snow);
+    margin: 0;
+    display: flex;
+    align-items: center;
+    letter-spacing: -0.01em;
+  }
+
+  .achievement-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .achievement-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: var(--color-mist-text);
+  }
+
+  .achievement-list li .bullet {
+    color: #188aec;
+    font-weight: 700;
+    flex-shrink: 0;
+    font-size: 0.8rem;
+    margin-top: 0.1rem;
   }
 </style>
 

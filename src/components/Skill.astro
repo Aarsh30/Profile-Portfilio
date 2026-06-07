@@ -2,39 +2,73 @@
 export interface Props {
   skillName: string;
   color?: string;
+  highlighted?: boolean;
 }
 
-const { skillName, color = '#188aec' } = Astro.props;
+const { skillName, color = '#188aec', highlighted = false } = Astro.props;
 ---
 
 <span
-  class="skill-pill"
+  class={`skill-pill ${highlighted ? 'highlighted' : ''}`}
   style={`--pill-color: ${color};`}
 >
-  {skillName}
+  <span class="skill-text">{skillName}</span>
 </span>
 
 <style>
   .skill-pill {
-    display: inline-block;
-    padding: 0.45rem 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.35rem 0.85rem;
     border-radius: 9999px;
-    font-size: 0.8rem;
+    font-size: 0.76rem;
     font-weight: 500;
     font-family: 'Inter', sans-serif;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.015em;
     color: var(--pill-color);
-    background: color-mix(in srgb, var(--pill-color) 10%, transparent);
-    border: 1px solid color-mix(in srgb, var(--pill-color) 30%, transparent);
+    background: color-mix(in srgb, var(--pill-color) 8%, transparent);
+    border: 1px solid color-mix(in srgb, var(--pill-color) 20%, transparent);
     cursor: default;
-    transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     white-space: nowrap;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Highlight styling - Vercel / Linear inspired */
+  .skill-pill.highlighted {
+    background: linear-gradient(135deg, color-mix(in srgb, var(--pill-color) 20%, transparent) 0%, rgba(20, 20, 20, 0.8) 100%);
+    border-color: color-mix(in srgb, var(--pill-color) 60%, transparent);
+    font-weight: 600;
+    box-shadow: 0 0 12px -3px color-mix(in srgb, var(--pill-color) 25%, transparent);
+  }
+
+  .skill-pill.highlighted::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+    transform: skewX(-25deg);
+    transition: 0.75s;
+  }
+
+  .skill-pill.highlighted:hover::before {
+    left: 200%;
   }
 
   .skill-pill:hover {
-    background: color-mix(in srgb, var(--pill-color) 20%, transparent);
-    border-color: color-mix(in srgb, var(--pill-color) 60%, transparent);
+    background: color-mix(in srgb, var(--pill-color) 18%, transparent);
+    border-color: color-mix(in srgb, var(--pill-color) 50%, transparent);
     transform: translateY(-2px);
-    box-shadow: 0 4px 16px -4px color-mix(in srgb, var(--pill-color) 40%, transparent);
+    box-shadow: 0 6px 20px -6px color-mix(in srgb, var(--pill-color) 35%, transparent);
+  }
+
+  .skill-pill.highlighted:hover {
+    border-color: var(--pill-color);
+    box-shadow: 0 8px 25px -5px color-mix(in srgb, var(--pill-color) 45%, transparent), 0 0 10px -2px var(--pill-color);
   }
 </style>
