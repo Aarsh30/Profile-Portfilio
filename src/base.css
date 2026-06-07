@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:slnt,wght@-10..0,100..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Yellowtail&display=swap');
 
@@ -5,9 +6,48 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    --color-onyx-canvas: #ffffff;
+    --color-carbon-surface: #f9fafb;
+    --color-graphite-surface: #f3f4f6;
+    --color-smoke-surface: #e5e7eb;
+    --color-iron-surface: #d1d5db;
+    --color-ash-border: #e5e7eb;
+    --color-ferrite-border: #d1d5db;
+    --color-steel-text: #9ca3af;
+    --color-pewter-text: #6b7280;
+    --color-fog-text: #4b5563;
+    --color-mist-text: #374151;
+    --color-chalk-border: #1f2937;
+    --color-snow: #111827;
+    --color-void: #f3f4f6;
+  }
+  .dark {
+    --color-onyx-canvas: #08090a;
+    --color-carbon-surface: #141516;
+    --color-graphite-surface: #1c1c1f;
+    --color-smoke-surface: #23252a;
+    --color-iron-surface: #2d2e31;
+    --color-ash-border: #34343a;
+    --color-ferrite-border: #3e3e44;
+    --color-steel-text: #62666d;
+    --color-pewter-text: #7f7f80;
+    --color-fog-text: #8a8f98;
+    --color-mist-text: #d0d6e0;
+    --color-chalk-border: #e4e5e9;
+    --color-snow: #f7f8f8;
+    --color-void: #030404;
+  }
+}
+
 @layer components {
   .blur-ellipse {
-    /* blur-3xl is 64px */
     @apply bg-blue w-40 h-40 opacity-40 rounded-full fixed blur-[70px] top-[50vh];
   }
+}
+
+@keyframes nameShimmer {
+  0%   { background-position: 0%   center; }
+  100% { background-position: 200% center; }
 }

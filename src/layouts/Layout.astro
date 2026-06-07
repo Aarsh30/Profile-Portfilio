@@ -2,47 +2,73 @@
 import { motion } from 'framer-motion';
 
 import Header from '@components/Header.astro';
-import Bottombar from '@components/Bottombar.astro';
-import BackgroundBlurEllipse from '@elements/BackgroundBlurEllipse.astro';
+import '@/base.css';
 
 const animations = {
-  initial: { opacity: 0 },
-  animate: { opacity: 1 },
-  exit: { opacity: 0 },
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -20 },
 };
 ---
 
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/assets/icons/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
-    <title>Aarsh Patel</title>
+    <title>Aarsh Patel - Portfolio</title>
+    <style>
+      /* Glowing Orbs Animation */
+      @keyframes float {
+        0%, 100% { transform: translateY(0px) scale(1); }
+        50% { transform: translateY(-20px) scale(1.03); }
+      }
+      .animate-float { animation: float 12s ease-in-out infinite; }
+      .animate-float-delayed { animation: float 15s ease-in-out infinite; animation-delay: 3s; }
+
+      /* Floating code chip animation — each chip gets a slightly different timing */
+      @keyframes floatChip {
+        0%   { transform: translateY(0px)   rotate(0deg); }
+        30%  { transform: translateY(-10px) rotate(0.4deg); }
+        70%  { transform: translateY(-6px)  rotate(-0.4deg); }
+        100% { transform: translateY(0px)   rotate(0deg); }
+      }
+
+      /* Gradient shimmer sweep on the hero name */
+      @keyframes shimmer {
+        0%   { background-position: 0% 50%; }
+        50%  { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      .animate-shimmer {
+        animation: shimmer 4s ease-in-out infinite;
+        background-size: 200% auto;
+      }
+
+      /* Smooth scroll behaviour for the entire page */
+      html { scroll-behavior: smooth; }
+    </style>
   </head>
-  <body class="dark:bg-darkBackground">
+  <body class="bg-canvas text-snow font-inter transition-colors duration-300 min-h-screen overflow-x-hidden selection:bg-smoke selection:text-snow">
+    <!-- Foreground Content -->
     <Header />
+    
     <motion.main
-      className="font-spaceGrotesk text-fontColor dark:text-white flex flex-col gap-20 px-14 py-20 md:px-40 md:py-10 lg:px-60 lg:py-20"
+      className="flex flex-col gap-32 w-full relative z-10"
       variants={animations}
       initial="initial"
       animate="animate"
       exit="exit"
+      transition={{ duration: 0.5, ease: 'easeOut' }}
       client:load
     >
       <slot />
     </motion.main>
-    <div class="flex justify-center">
-      <Bottombar />
-    </div>
-    <BackgroundBlurEllipse />
 
     <script is:inline>
       const theme = (() => {
-        if (
-          typeof localStorage !== 'undefined' &&
-          localStorage.getItem('theme')
-        ) {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
           return localStorage.getItem('theme');
         }
         if (window.matchMedia('(prefers-color-scheme: dark)').matches) {

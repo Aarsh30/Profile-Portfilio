@@ -7,9 +7,9 @@ import navItems from './navItems';
 
 <!-- TODO: make it responsive for extra small devices -->
 <div
-  class="fixed bottom-6 z-1 flex justify-center items-center gap-2.5 bg-white dark:bg-darkBottomBarBackground border border-bottomBarIconBgColor dark:border-slate-700 rounded-3xl py-1.5 md:py-0.5 px-3 md:px-5 shadow-bottomBarShadow dark:shadow-darkBottomBarShadow transform-preserve-3d"
+  class="fixed bottom-6 z-10 flex justify-center items-center gap-2.5 bg-carbon border border-ash rounded-[9999px] py-1.5 md:py-1 px-3 md:px-5 shadow-lg"
 >
   {navItems.map((navItem) => <BottombarIcon navItem={navItem} />)}
-  <div class="border-l border-fontColor h-12"></div>
+  <div class="border-l border-ash h-8 mx-1"></div>
   <ThemeToggle client:load />
 </div>

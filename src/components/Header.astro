@@ -1,9 +1,28 @@
-<div class="sticky w-full top-0 left-0 px-8 md:px-10 lg:px-12 py-6 z-1 backdrop-blur">
-  <a href="/">
-    <h1
-      class="text-blue font-black font-yellowTail text-3xl md:text-4xl lg:text-5xl"
-    >
+---
+import ThemeToggle from '@components/ThemeToggle';
+import navItems from './navItems';
+---
+
+<header class="sticky w-full top-0 left-0 px-6 md:px-20 lg:px-40 py-4 z-50 backdrop-blur-md border-b border-ash bg-canvas/80 flex items-center justify-between">
+  <a href="/" class="flex items-center gap-2">
+    <h1 class="text-snow font-inter font-[590] text-xl tracking-tight">
      Aarsh Patel
     </h1>
   </a>
-</div>
+
+  <nav class="hidden md:flex items-center gap-6">
+    {navItems.map((item) => (
+      <a 
+        href={item.route} 
+        class="text-sm font-inter font-[510] text-fog hover:text-snow transition-colors"
+      >
+        {item.label}
+      </a>
+    ))}
+  </nav>
+
+  <div class="flex items-center gap-4">
+    <div class="hidden md:block w-px h-5 bg-ash"></div>
+    <ThemeToggle client:load />
+  </div>
+</header>

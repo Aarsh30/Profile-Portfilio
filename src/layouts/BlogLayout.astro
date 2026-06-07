@@ -1,0 +1,60 @@
+---
+import Layout from './Layout.astro';
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout>
+  <!-- SEO & OpenGraph Meta Tags mapping can be added in Layout if supported, or placed here if we modify Layout.astro. 
+       Currently, Layout.astro has a hardcoded title. For now, we will add content elements that are SEO rich. -->
+  <article class="max-w-3xl mx-auto py-32 px-6 w-full min-h-screen">
+    <a href="/blog" class="text-fog hover:text-snow transition-colors mb-8 inline-flex items-center gap-2 group">
+      <span class="transform group-hover:-translate-x-1 transition-transform">&larr;</span> Back to Blog
+    </a>
+    
+    <header class="mb-12 border-b border-ash pb-8">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4 text-snow leading-tight bg-clip-text text-transparent bg-gradient-to-r from-snow to-fog">
+        {frontmatter.title}
+      </h1>
+      <p class="text-fog mb-2 text-lg">{frontmatter.description}</p>
+      <div class="flex items-center gap-4 text-sm text-steel mt-4 font-mono">
+        <span>Published: {frontmatter.date}</span>
+      </div>
+    </header>
+    
+    <div class="prose-content text-mist leading-relaxed space-y-6 text-lg">
+      <slot />
+    </div>
+  </article>
+</Layout>
+
+<style is:global>
+  /* Blog Markdown Styling supporting the Linear Theme */
+  .prose-content h2 {
+    @apply text-3xl font-bold text-snow mt-14 mb-6 border-b border-ash pb-2;
+  }
+  .prose-content h3 {
+    @apply text-2xl font-semibold text-snow mt-10 mb-4;
+  }
+  .prose-content p {
+    @apply mb-6;
+  }
+  .prose-content ul {
+    @apply list-disc list-inside mb-6 space-y-2 pl-4;
+  }
+  .prose-content ol {
+    @apply list-decimal list-inside mb-6 space-y-2 pl-4;
+  }
+  .prose-content li {
+    @apply mb-1 text-mist;
+  }
+  .prose-content a {
+    @apply text-blue hover:text-blue/80 underline decoration-blue/30 underline-offset-4 transition-colors;
+  }
+  .prose-content strong {
+    @apply text-snow font-semibold;
+  }
+  .prose-content blockquote {
+    @apply border-l-4 border-blue pl-4 py-1 italic text-fog bg-carbon rounded-r-md;
+  }
+</style>

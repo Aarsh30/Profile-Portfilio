@@ -1,82 +1,464 @@
 ---
 import Btn from '@elements/Btn.astro';
 import Heading from '@elements/Heading.astro';
+import ProjectCard from '@components/ProjectCard.astro';
+import Skill from '@components/Skill.astro';
 
 import Layout from '@layouts/Layout.astro';
 
-import '@/base.css';
+import getImageURL from '@utils/getImageURL';
+import projectsData from '@data/projectsData';
+import skillsData from '@data/skillsData';
 ---
 
-
-<style>
-  .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .content {
-    flex: 1;
-    margin-bottom: 2rem;
-    text-align: center;
-  }
-
-  .image {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .image img {
-    max-width: 130%;
-    max-height: 130%;
-  }
-
-  /* Media Queries */
-  @media (min-width: 768px) {
-    .container {
-      flex-direction: row;
-      justify-content: center;
-    }
-
-    .content {
-      flex: 1;
-      margin-bottom: 0;
-      text-align: left;
-      padding-right: 2rem;
-    }
-
-    .image {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .image img {
-      max-width: 140%;
-      max-height: 140%;
-    }
-  }
-</style>
-
 <Layout>
-  <div class="container">
-    <div class="content flex flex-col gap-7 font-bold">
-      <Heading>Hello!👋🏻</Heading>
-      <Heading>This is Aarsh</Heading>
-      <Heading>I'm a Developer + Content Creator </Heading>
-      <p class="text-lg md:text-xl">I like to solve real world problems with software</p>
-      <div>
-        <Btn
-          btnText="Connect Me"
-          btnRedirectLink="https://www.linkedin.com/in/aarshpatel30/"
+
+<!-- ═══════════════════════════════════════════════════════════════
+     PARALLAX HERO — Full viewport height, 5 depth layers.
+     Each layer has an id. JavaScript moves them at different
+     speeds on mousemove → you literally see things at different
+     Z depths floating past each other as you move the cursor.
+     ═══════════════════════════════════════════════════════════════ -->
+
+<div
+  id="hero-root"
+  class="relative w-full overflow-hidden bg-canvas transition-colors duration-300"
+  style="height:100vh;min-height:640px;margin-top:-5rem;"
+>
+
+  <!-- ── LAYER 1 ──  Star / particle dots  (depth factor 0.02 — barely moves) ── -->
+  <div id="l1" class="absolute inset-0 pointer-events-none" style="will-change:transform;">
+    <canvas id="star-canvas" style="width:100%;height:100%;display:block;"></canvas>
+  </div>
+
+  <!-- ── LAYER 2 ──  Circuit board SVG lines  (depth 0.06) ── -->
+  <div id="l2" class="absolute inset-0 pointer-events-none opacity-25" style="will-change:transform;">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <line x1="0" y1="20%" x2="30%" y2="20%" stroke="var(--color-ash-border)" stroke-width="1"/>
+      <line x1="30%" y1="20%" x2="30%" y2="50%" stroke="var(--color-ash-border)" stroke-width="1"/>
+      <line x1="30%" y1="50%" x2="60%" y2="50%" stroke="var(--color-ferrite-border)" stroke-width="1"/>
+      <line x1="70%" y1="0" x2="70%" y2="35%" stroke="var(--color-ash-border)" stroke-width="1"/>
+      <line x1="70%" y1="35%" x2="100%" y2="35%" stroke="var(--color-ash-border)" stroke-width="1"/>
+      <line x1="0" y1="75%" x2="20%" y2="75%" stroke="var(--color-ferrite-border)" stroke-width="1"/>
+      <line x1="20%" y1="75%" x2="20%" y2="100%" stroke="var(--color-ferrite-border)" stroke-width="1"/>
+      <line x1="60%" y1="50%" x2="60%" y2="80%" stroke="var(--color-ash-border)" stroke-width="1"/>
+      <line x1="60%" y1="80%" x2="100%" y2="80%" stroke="var(--color-ash-border)" stroke-width="1"/>
+      <!-- glowing nodes -->
+      <circle cx="30%"  cy="20%"  r="4" fill="#188aec" opacity="0.8"/>
+      <circle cx="30%"  cy="50%"  r="4" fill="#8b5cf6" opacity="0.7"/>
+      <circle cx="60%"  cy="50%"  r="4" fill="#188aec" opacity="0.7"/>
+      <circle cx="70%"  cy="35%"  r="4" fill="#f59e0b" opacity="0.7"/>
+      <circle cx="60%"  cy="80%"  r="4" fill="#8b5cf6" opacity="0.7"/>
+      <circle cx="20%"  cy="75%"  r="4" fill="#22c55e" opacity="0.7"/>
+    </svg>
+  </div>
+
+  <!-- ── LAYER 3 ──  Glowing atmosphere orbs  (depth 0.12) ── -->
+  <div id="l3" class="absolute inset-0 pointer-events-none" style="will-change:transform;">
+    <div style="position:absolute;top:-15%;left:-10%;width:520px;height:520px;border-radius:50%;background:rgba(24,138,236,0.15);filter:blur(130px);"></div>
+    <div style="position:absolute;bottom:-20%;right:-12%;width:460px;height:460px;border-radius:50%;background:rgba(139,92,246,0.12);filter:blur(120px);"></div>
+  </div>
+
+  <!-- ── LAYER 4 ──  Floating code snippets  (depth 0.22) ── -->
+  <div id="l4" class="absolute inset-0 pointer-events-none select-none" style="will-change:transform;">
+
+    <div class="absolute top-[10%] left-[4%] font-mono text-xs leading-relaxed text-fog border border-ferrite bg-carbon px-3.5 py-2.5 rounded-lg shadow-sm">
+      <span class="text-[#c084fc]">const</span> <span class="text-[#7dd3fc]">engineer</span> = () =&gt; {"{"}
+      <br/>&nbsp;&nbsp;<span class="text-[#86efac]">buildAwesome</span>(<span class="text-[#fde68a]">"product"</span>)
+      <br/>{"}"}
+    </div>
+
+    <div class="absolute top-[7%] right-[6%] font-mono text-xs text-fog border border-ferrite bg-carbon px-3.5 py-2 rounded-lg shadow-sm">
+      <span class="text-[#c084fc]">git</span> push origin <span class="text-[#86efac]">main</span> 🚀
+    </div>
+
+    <div class="absolute top-[44%] left-[2%] font-mono text-xs text-[#34d399] border border-[#34d399]/30 bg-carbon px-3 py-1.5 rounded-lg shadow-sm">
+      &lt;<span class="text-[#7dd3fc]">Engineer</span> /&gt;
+    </div>
+
+    <div class="absolute bottom-[16%] right-[4%] font-mono text-xs leading-relaxed text-fog border border-ferrite bg-carbon px-3.5 py-2.5 rounded-lg shadow-sm">
+      <span class="text-[#c084fc]">while</span>(<span class="text-[#7dd3fc]">alive</span>) {"{"}
+      <br/>&nbsp;&nbsp;<span class="text-[#fde68a]">skills</span>++
+      <br/>{"}"}
+    </div>
+
+    <div class="absolute bottom-[30%] left-[4%] font-mono text-[10px] text-blue border border-blue/30 bg-carbon px-2.5 py-1 rounded-full">SwiftUI</div>
+    <div class="absolute top-[27%] right-[3%] font-mono text-[10px] text-[#8b5cf6] border border-[#8b5cf6]/30 bg-carbon px-2.5 py-1 rounded-full">Python</div>
+    <div class="absolute bottom-[20%] left-[22%] font-mono text-[10px] text-[#22c55e] border border-[#22c55e]/30 bg-carbon px-2.5 py-1 rounded-full">Cloud &amp; DevOps</div>
+    <div class="absolute top-[62%] right-[5%] font-mono text-[10px] text-[#f59e0b] border border-[#f59e0b]/30 bg-carbon px-2.5 py-1 rounded-full">System Design</div>
+    <div class="absolute top-[80%] left-[12%] font-mono text-[10px] text-rose-400 border border-rose-400/30 bg-carbon px-2.5 py-1 rounded-full">iOS Dev</div>
+    <div class="absolute bottom-[40%] right-[10%] font-mono text-[10px] text-teal-400 border border-teal-400/30 bg-carbon px-2.5 py-1 rounded-full">Backend Architecture</div>
+  </div>
+
+  <!-- ── LAYER 5 ──  Foreground content (text depth 0.30, image depth 0.42) ── -->
+  <div class="absolute inset-0 flex items-center z-10">
+    <div class="w-full max-w-[1080px] mx-auto px-6 md:px-20 lg:px-40 flex flex-col md:flex-row items-center justify-between gap-12 md:gap-8">
+
+      <!-- TEXT — moves at depth 0.30 -->
+      <div id="l5-text" class="flex-1 flex flex-col gap-5" style="will-change:transform;">
+
+
+
+        <h1 class="text-[clamp(2.2rem,5vw,4rem)] font-bold text-snow tracking-tight leading-[1.15] m-0">
+          Hello! 👋🏻<br/>
+          I'm&nbsp;<span id="grad-name" style="background:linear-gradient(90deg,#188aec 0%,#8b5cf6 50%,#188aec 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:nameShimmer 4s linear infinite;">Aarsh</span>
+        </h1>
+
+        <h2 class="text-[clamp(1rem,2.2vw,1.4rem)] font-medium text-mist m-0">
+          Engineer, a trade of all stack + Content Creator
+        </h2>
+
+        <p class="text-[15px] text-fog leading-[1.7] max-w-[380px] m-0">
+          Building real-world software solutions — one elegant commit at a time.
+        </p>
+
+        <!-- stat strip -->
+        <div class="flex items-center gap-5 font-mono text-[11px] text-steel mt-1">
+          <div class="flex flex-col gap-0.5">
+            <span class="text-[20px] font-bold text-snow font-inherit">100+</span>
+            <span>LeetCode</span>
+          </div>
+          <div class="w-px h-8 bg-ash"></div>
+          <div class="flex flex-col gap-0.5">
+            <span class="text-[20px] font-bold text-snow font-inherit">10k+</span>
+            <span>YT Subs</span>
+          </div>
+          <div class="w-px h-8 bg-ash"></div>
+          <div class="flex flex-col gap-0.5">
+            <span class="text-[20px] font-bold text-snow font-inherit">3+</span>
+            <span>Certs</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-4 flex-wrap mt-1">
+          <Btn btnText="Connect Me" btnRedirectLink="https://www.linkedin.com/in/aarshpatel30/" />
+          <a href="/#projects" class="text-[14px] text-fog hover:text-snow underline underline-offset-4 transition-colors">
+            View Projects →
+          </a>
+        </div>
+
+      </div>
+
+      <!-- IMAGE — moves at depth 0.42 (fastest = closest to viewer) -->
+      <div id="l5-img" class="flex-1 flex justify-center items-center relative" style="will-change:transform;">
+        <!-- halo glow behind image -->
+        <div class="absolute w-[450px] h-[450px] rounded-full bg-[#188aec]/15 blur-[90px] pointer-events-none"></div>
+        <img
+          src="/assets/images/3d model.png"
+          alt="Aarsh Patel — Software Engineer"
+          class="relative w-[110%] max-w-[650px] object-contain select-none transition-transform duration-150 ease-out drop-shadow-[0_20px_70px_rgba(24,138,236,0.3)] animate-float transform lg:scale-110"
+          draggable="false"
         />
       </div>
-    </div>
-    <div class="image">
-      <img src="/assets/images/3d model.png">
+
     </div>
   </div>
+
+  <!-- Bottom page fade -->
+  <div class="absolute bottom-0 left-0 right-0 h-[120px] bg-gradient-to-b from-transparent to-canvas pointer-events-none"></div>
+
+</div>
+<!-- end hero -->
+
+<div class="max-w-[1080px] mx-auto w-full px-6 md:px-20 lg:px-40 flex flex-col gap-28 py-20">
+  <!-- About Section -->
+  <section id="about" class="scroll-mt-24 flex flex-col gap-10">
+    <div class="flex flex-col gap-7 text-md md:text-xl">
+      <div class="flex flex-col gap-1">
+        <Heading>About Me 👨‍🦰</Heading>
+        <p class="text-fog">A brief intro to who I am and what I do:</p>
+      </div>
+      <div>
+        <p class="text-mist">
+          I am <span class="font-black text-3xl text-snow">Aarsh</span>
+        </p>
+      </div>
+      <div>
+        <p class="text-mist leading-relaxed">
+         Aarsh is an Engineer, a trade of all stack, based in India with a passion for building digital stuff. 
+         He likes solving real-life problems with code. When not online, he loves to Read and Create Content for Social Media.
+         Currently, he is pursuing a B.Tech in Computer Science. He publishes content related to self growth, college reviews, productivity,
+         coding, career opportunities, and podcasts on his YouTube channel called
+         <br> <b><a href="https://www.youtube.com/channel/UC8lWeV0xePxysVetCBGvLzA" class="text-snow hover:underline">🎬"Aarsh Patel"</a></b> which has around 10k subscribers.
+        </p>
+      </div>
+      <div>
+        <p class="text-mist leading-relaxed">
+          I believe I've got the right skills and technologies to take your idea
+          and build a full fledged web application with maintainable code. I'm
+          open to explore and learn other fields of Software Engineering such as
+          Development, DevOps and Cyber Security.
+        </p>
+      </div>
+    </div>
+    <div>
+      <Btn btnText="Say Hello" btnRedirectLink="mailto:aarshpatel.work@gmail.com" />
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="scroll-mt-24 flex flex-col gap-10 lg:gap-16 py-10">
+    <div class="flex flex-col gap-2 lg:gap-7 text-xl">
+      <Heading>Skills 🛠️</Heading>
+      <p class="text-fog">Here are some of my skills:</p>
+    </div>
+    <div class="flex flex-col gap-10 lg:gap-16 items-center justify-center">
+      {
+        skillsData.map((skill) => {
+          return (
+            <div class="flex flex-col gap-6 items-center justify-center w-full">
+              <h2 class="text-lg font-bold border-b border-ash pb-2 w-full text-center text-snow">{skill.skillType}</h2>
+              <div class="flex items-center justify-center gap-8 flex-wrap">
+                {skill.skills.map((skillDetail) => {
+                  return (
+                    <Skill
+                      skillImageUrl={getImageURL(skillDetail.skillImageName)}
+                      skillName={skillDetail.skillName}
+                    />
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="scroll-mt-24 flex flex-col gap-16 py-10">
+    <div class="flex flex-col gap-5">
+      <Heading>Projects💡</Heading>
+      <p class="text-fog">Some things I've been working on in the past few months:</p>
+    </div>
+    <div class="flex flex-col gap-20">
+      {
+        projectsData.map((project, idx) => (
+          <ProjectCard
+            projectName={project.projectName}
+            projectDescription={project.projectDescription}
+            projectImageURL={project.projectImageURL}
+            projectRepoURL={project.projectRepoURL}
+            projectLiveURL={project.projectLiveURL}
+            textOrder={idx % 2 === 1 ? 2 : 1}
+            imageOrder={idx % 2 === 0 ? 2 : 1}
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- Achievements Section -->
+  <section id="achievements" class="scroll-mt-24 flex flex-col md:flex-row items-center justify-between gap-10 py-10">
+    <div class="flex-1 flex flex-col gap-5">
+      <Heading>Achievements🏆</Heading>
+      <p class="text-fog">Some of my achievements over the past few years:</p>
+      <div>
+         <ul class="list-disc pl-5 flex flex-col gap-3 text-mist text-lg md:text-xl">
+           <li>AIR 256 in CodeJam Farewell in Round A.</li>
+           <li>Solved 100+ Problems on LeetCode.</li>
+           <li>Microsoft Azure Fundamentals Certified.</li>
+           <li>Google Cloud Platform Foundational.</li>
+           <li>Top 10 in SDG GDSC Hackathon.</li>
+           <li>Top 10 in DataBid Hackathon.</li>
+         </ul>
+      </div>
+    </div>
+    <div class="flex-1 flex justify-center items-center">
+      <img src="/assets/images/1.png" alt="Achievements 3D model" class="max-w-[80%] max-h-[80%] filter drop-shadow-[0_20px_50px_rgba(24,138,236,0.2)]" />
+    </div>
+  </section>
+
+  <!-- SEO Section -->
+  <section id="seo-aarsh-patel" class="scroll-mt-24 flex flex-col gap-10 py-10 border-t border-ferrite pt-12">
+    <div class="flex flex-col gap-4 text-center items-center">
+      <h2 class="text-2xl md:text-3xl font-bold text-snow">Why Collaborate with Aarsh Patel?</h2>
+      <p class="text-mist max-w-4xl leading-relaxed text-sm">
+        Aarsh Patel is a versatile <strong>Software Engineer</strong> who practically knows everything across the tech stack. Beyond standard development, I am a dedicated professional with deep expertise in <strong>iOS App Development</strong>, crafting seamless mobile experiences. Whether you need an end-to-end cloud infrastructure, a beautifully designed iOS app, or a scalable backend system, Aarsh Patel is the reliable choice to bring your vision to life.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 mt-4 text-left">
+      <div class="flex flex-col gap-3">
+        <h3 class="text-lg md:text-xl font-semibold text-snow">Comprehensive Software Engineering</h3>
+        <p class="text-fog leading-relaxed text-sm">
+          My approach covers the entire spectrum of engineering. I dive deep into essential technologies including native <strong>Swift and SwiftUI for iOS</strong>, React, Next.js, Python, and cloud databases. Aarsh Patel leverages modern design patterns and deep algorithmic knowledge to build robust applications from the ground up, ensuring a premium user experience across all platforms.
+        </p>
+        
+        <h3 class="text-lg md:text-xl font-semibold text-snow mt-4">Expert Native iOS Development</h3>
+        <p class="text-fog leading-relaxed text-sm">
+          As a professional software engineer, my core strength shines in iOS app creation. Aarsh Patel specializes in building high-performance, native iOS applications that adhere strictly to Apple's Human Interface Guidelines. From intricate animations to complex state management and seamless API integrations, my iOS solutions are built to scale and succeed on the App Store.
+        </p>
+      </div>
+
+      <div class="flex flex-col gap-3">
+        <h3 class="text-lg md:text-xl font-semibold text-snow">System Design & Cloud Architecture</h3>
+        <p class="text-fog leading-relaxed text-sm">
+          Transition complex ideas into scalable reality. I specialize in High-Level Design (HLD) and Low-Level Design (LLD) using real-world architectures. Aarsh Patel deeply understands scalability, distributed microservices, effective caching, and optimized database design to confidently tackle intricate project requirements and heavy infrastructure demands.
+        </p>
+        
+        <h3 class="text-lg md:text-xl font-semibold text-snow mt-4">Content Creation & Real-World Problem Solving</h3>
+        <p class="text-fog leading-relaxed text-sm">
+          Aarsh Patel isn't just an engineer; he's an educator and problem solver. With over 10k subscribers on YouTube, I share insights on software engineering, iOS development, and career growth. With a proven track record of winning hackathons, solving complex LeetCode algorithms, and building verified projects, Aarsh Patel provides the expertise needed to deliver outstanding digital products.
+        </p>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-3 mt-4 text-left">
+      <h3 class="text-lg md:text-xl font-semibold text-snow">Who is Aarsh Patel?</h3>
+      <p class="text-fog leading-relaxed text-xs md:text-sm">
+        Aarsh completed his B.Tech in Computer Science and Engineering from <strong>VIT</strong> and currently works as a Software Engineer at <strong>MakeMyTrip</strong>. As a prominent tech educator, he commands a strong presence with <strong>15k+ subscribers on YouTube</strong>, 15k+ followers on LinkedIn, and nearly 10k followers on Instagram. Beyond writing code, Aarsh is a passionate public speaker, delivering tech talks at <strong>Swift Bengaluru, Christ University, VIT, CHARUSAT, and GITAM University</strong>. Dedicated to the developer ecosystem, he is actively building platforms like <strong>swe180.com</strong> and <strong>swiftyn.com</strong> to empower the next generation of engineers.
+      </p>
+    </div>
+
+    <div class="flex flex-col gap-4 text-center items-center mt-8 border-t border-ferrite/50 pt-8">
+      <h2 class="text-xl md:text-2xl font-bold text-snow">Start Your Journey Today</h2>
+      <p class="text-mist max-w-3xl leading-relaxed text-sm">
+        Join the thousands of developers and businesses who have elevated their technical capabilities with Aarsh Patel. Let's engineer something extraordinary together.
+      </p>
+    </div>
+  </section>
+
+</div>
+
 </Layout>
+
+
+<script>
+// ═══════════════════════════════════════════════════════
+//  PARALLAX ENGINE
+//  5 layers, each with a distinct depth factor.
+//  On mousemove: layers shift by (mouseOffset × depthFactor)
+//  → background barely moves, foreground moves a lot
+//  → creates clear, obvious 3D depth separation
+// ═══════════════════════════════════════════════════════
+
+const root  = document.getElementById('hero-root');
+const l1    = document.getElementById('l1');       // stars
+const l2    = document.getElementById('l2');       // circuit
+const l3    = document.getElementById('l3');       // orbs
+const l4    = document.getElementById('l4');       // code chips
+const txtL  = document.getElementById('l5-text'); // text
+const imgL  = document.getElementById('l5-img');  // image
+
+// Depth factors: how many px per 1px of cursor offset
+const D_STARS   = 0.015;
+const D_CIRCUIT = 0.05;
+const D_ORBS    = 0.10;
+const D_CHIPS   = 0.20;
+const D_TEXT    = 0.28;
+const D_IMAGE   = 0.42;
+
+// Current transform values (smoothed with lerp)
+let cx = 0, cy = 0;       // raw mouse offset
+let sx = 0, sy = 0;       // smoothed offset
+let raf: number | null = null;
+
+function lerp(a: number, b: number, t: number) { return a + (b - a) * t; }
+
+function applyTransforms() {
+  sx = lerp(sx, cx, 0.06); // 0.06 = smoothing (lower = slower/smoother)
+  sy = lerp(sy, cy, 0.06);
+
+  const move = (el: HTMLElement | null, d: number, invertX = false) => {
+    if (!el) return;
+    const dx = sx * d * (invertX ? -1 : 1);
+    const dy = sy * d;
+    el.style.transform = `translate(${dx}px, ${dy}px)`;
+  };
+
+  move(l1,   D_STARS);
+  move(l2,   D_CIRCUIT);
+  move(l3,   D_ORBS);
+  // orbs counter move for parallax illusion
+  if (l3) l3.style.transform = `translate(${sx * D_ORBS}px, ${sy * D_ORBS}px)`;
+  move(l4,   D_CHIPS);
+  move(txtL, D_TEXT);
+
+  // Image gets rotation (3D tilt) + translation for extra depth
+  if (imgL) {
+    const rotY =  (sx / window.innerWidth)  * 18; // max 18deg
+    const rotX = -(sy / window.innerHeight) * 12; // max 12deg
+    const dx   = sx * D_IMAGE;
+    const dy   = sy * D_IMAGE;
+    imgL.style.transform = `translate(${dx}px, ${dy}px) perspective(600px) rotateY(${rotY}deg) rotateX(${rotX}deg)`;
+  }
+
+  // Keep animating until close to target
+  if (Math.abs(sx - cx) > 0.05 || Math.abs(sy - cy) > 0.05) {
+    raf = requestAnimationFrame(applyTransforms);
+  } else {
+    raf = null;
+  }
+}
+
+if (root) {
+  root.addEventListener('mousemove', (e) => {
+    const r = root.getBoundingClientRect();
+    cx = e.clientX - r.left  - r.width  / 2;
+    cy = e.clientY - r.top   - r.height / 2;
+    if (!raf) raf = requestAnimationFrame(applyTransforms);
+  });
+
+  root.addEventListener('mouseleave', () => {
+    cx = 0; cy = 0;
+    if (!raf) raf = requestAnimationFrame(applyTransforms);
+  });
+}
+
+// ── STAR CANVAS ─────────────────────────────────────────────────
+const canvas = document.getElementById('star-canvas') as HTMLCanvasElement;
+if (canvas) {
+  const ctx   = canvas.getContext('2d')!;
+  const stars: { x: number; y: number; r: number; o: number; speed: number }[] = [];
+
+  function resize() {
+    canvas.width  = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  for (let i = 0; i < 160; i++) {
+    stars.push({
+      x: Math.random(),
+      y: Math.random(),
+      r: Math.random() * 1.2 + 0.3,
+      o: Math.random() * 0.5 + 0.1,
+      speed: Math.random() * 0.0003 + 0.0001,
+    });
+  }
+
+  function drawStars() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    // Check if dark mode is active to change star color
+    const isDark = document.documentElement.classList.contains('dark');
+    const rgb = isDark ? '247,248,248' : '100,110,120';
+    
+    stars.forEach(s => {
+      s.o += s.speed;
+      if (s.o > 0.7) s.speed = -Math.abs(s.speed);
+      if (s.o < 0.05) s.speed = Math.abs(s.speed);
+      ctx.beginPath();
+      ctx.arc(s.x * canvas.width, s.y * canvas.height, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(${rgb},${s.o})`;
+      ctx.fill();
+    });
+    requestAnimationFrame(drawStars);
+  }
+  drawStars();
+}
+
+// ── SCROLL PARALLAX ─────────────────────────────────────────────
+// Background scrolls slower than foreground on scroll too
+window.addEventListener('scroll', () => {
+  const sy2 = window.scrollY;
+  if (sy2 > window.innerHeight * 1.2) return;
+  if (l1) l1.style.transform    = `translateY(${sy2 * 0.03}px)`;
+  if (l2) l2.style.transform    = `translateY(${sy2 * 0.06}px)`;
+  if (l3) l3.style.transform    = `translateY(${sy2 * 0.10}px)`;
+  if (l4) l4.style.transform    = `translateY(${sy2 * 0.18}px)`;
+  if (imgL) imgL.style.transform = `translateY(${sy2 * 0.28}px)`;
+}, { passive: true });
+</script>

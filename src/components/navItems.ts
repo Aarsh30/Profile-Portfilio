@@ -5,31 +5,38 @@ import {
   faToolbox,
   faTrophy,
   faUser,
+  faBookOpen
 } from '@fortawesome/free-solid-svg-icons';
 
 export default [
   {
     icon: faHouse,
-    route: '/',
+    route: '/#home',
+    label: 'Home',
   },
   {
     icon: faUser,
-    route: '/about',
-  },
-  {
-    icon: faLightbulb,
-    route: '/projects',
+    route: '/#about',
+    label: 'About',
   },
   {
     icon: faToolbox,
-    route: '/skills',
+    route: '/#skills',
+    label: 'Skills',
   },
-  // {
-  //   icon: faRoad,
-  //   route: '/journey',
-  // },
+  {
+    icon: faLightbulb,
+    route: '/#projects',
+    label: 'Projects',
+  },
   {
     icon: faTrophy,
-    route: '/achievements',
+    route: '/#achievements',
+    label: 'Achievements',
+  },
+  {
+    icon: faBookOpen,
+    route: '/blog',
+    label: 'Blog',
   },
 ];
