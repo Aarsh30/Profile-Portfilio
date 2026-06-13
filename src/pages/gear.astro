@@ -282,7 +282,19 @@ import booksData from '@data/booksData';
   .gear-page {
     max-width: 760px;
     margin: 0 auto;
-    padding: 0 0.5rem 6rem;
+    padding: 0 1.5rem 6rem;
+  }
+
+  @media (min-width: 768px) {
+    .gear-page {
+      padding: 0 3rem 6rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .gear-page {
+      padding: 0 4rem 6rem;
+    }
   }
 
   /* ── Hero ─────────────────────────────────────── */
@@ -361,6 +373,7 @@ import booksData from '@data/booksData';
     cursor: pointer;
     transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
     white-space: nowrap;
+    flex-shrink: 0;
     outline: none;
   }
 
@@ -566,21 +579,8 @@ import booksData from '@data/booksData';
 
   /* ── Mobile Layout Adjustments ───────────────── */
   @media (max-width: 640px) {
-    .gear-row {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 0.85rem;
-      padding: 1.25rem 1.1rem;
-    }
-    
-    .gear-row-link {
-      width: 100%;
-      justify-content: center;
-      padding: 0.45rem 1rem;
-    }
-
     .gear-tabs-container {
-      justify-content: center;
+      justify-content: flex-start;
     }
   }
 </style>
