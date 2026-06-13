@@ -92,14 +92,20 @@ const animations = {
 
       /* Smooth scroll behaviour for the entire page */
       html { scroll-behavior: smooth; }
+      /* overflow-x: clip on html/body prevents horizontal scroll without breaking
+         position:sticky. The main element also gets overflow-x:hidden as a hard
+         cap so no child can widen the page beyond the viewport. */
+      html, body { overflow-x: clip; }
+      main { overflow-x: hidden; max-width: 100vw; }
     </style>
   </head>
-  <body class="bg-canvas text-snow font-inter transition-colors duration-300 min-h-screen overflow-x-hidden selection:bg-smoke selection:text-snow">
+  <body class="bg-canvas text-snow font-inter transition-colors duration-300 min-h-screen selection:bg-smoke selection:text-snow">
     <!-- Foreground Content -->
     <Header />
     
     <motion.main
-      className="flex flex-col gap-32 w-full relative z-10"
+      className="flex flex-col gap-32 w-full min-w-0 relative z-10"
+      style={{ maxWidth: '100vw', overflowX: 'hidden' }}
       variants={animations}
       initial="initial"
       animate="animate"
