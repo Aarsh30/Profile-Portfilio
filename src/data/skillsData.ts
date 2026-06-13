@@ -14,7 +14,7 @@ export default [
   },
   {
     skillType: 'iOS Development',
-    categoryColor: '#f43f5e',
+    categoryColor: '#188aec',
     categoryIcon: '📱',
     skills: [
       { skillName: 'SwiftUI', level: 'Expert', highlighted: true },
@@ -34,7 +34,7 @@ export default [
   },
   {
     skillType: 'AI Engineering',
-    categoryColor: '#10b981',
+    categoryColor: '#188aec',
     categoryIcon: '🤖',
     skills: [
       { skillName: 'AI Engineering', level: 'Expert', highlighted: true },
@@ -55,7 +55,7 @@ export default [
   },
   {
     skillType: 'Software Engineering & Architecture',
-    categoryColor: '#8b5cf6',
+    categoryColor: '#188aec',
     categoryIcon: '🏗',
     skills: [
       { skillName: 'System Design', level: 'Expert', highlighted: true },
@@ -71,7 +71,7 @@ export default [
   },
   {
     skillType: 'Backend Development',
-    categoryColor: '#3b82f6',
+    categoryColor: '#188aec',
     categoryIcon: '🌐',
     skills: [
       { skillName: 'Go', level: 'Expert', highlighted: true },
@@ -86,7 +86,7 @@ export default [
   },
   {
     skillType: 'Databases',
-    categoryColor: '#a855f7',
+    categoryColor: '#188aec',
     categoryIcon: '🗄',
     skills: [
       { skillName: 'MongoDB', level: 'Advanced', highlighted: false },
@@ -97,7 +97,7 @@ export default [
   },
   {
     skillType: 'Cloud & DevOps',
-    categoryColor: '#06b6d4',
+    categoryColor: '#188aec',
     categoryIcon: '☁',
     skills: [
       { skillName: 'Microsoft Azure', level: 'Advanced', highlighted: false },
@@ -111,7 +111,7 @@ export default [
   },
   {
     skillType: 'Leadership & Professional',
-    categoryColor: '#f59e0b',
+    categoryColor: '#188aec',
     categoryIcon: '🎤',
     skills: [
       { skillName: 'Technical Mentorship', level: 'Expert', highlighted: true },
@@ -131,7 +131,7 @@ export default [
   },
   {
     skillType: 'Content Creation & Education',
-    categoryColor: '#ec4899',
+    categoryColor: '#188aec',
     categoryIcon: '📈',
     skills: [
       { skillName: 'Technical Content Creation', level: 'Expert', highlighted: false },
