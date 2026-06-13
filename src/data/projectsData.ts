@@ -14,7 +14,7 @@ export default [
   {
     projectName: 'Github User Finder',
     projectDescription:
-      'An automated tool which helps user to find there friends and see their statics and analytics of user!',
+      'An automated tool which helps users find their friends and see their statistics and analytics.',
     projectImageURL: getImageURL('1.jpg'),
     projectRepoURL: 'https://github.com/Aarsh30/Github-User-Finder',
     projectLiveURL: 'https://singular-basbousa-36afc0.netlify.app/login',
@@ -22,7 +22,7 @@ export default [
   {
     projectName: 'Customize AI',
     projectDescription:
-      'Build using 3Js it is awesome platform to customize your tshirt and also you can use built in ai tools, for great designs of your tshirts',
+      'Built using Three.js, it is an awesome platform to customize your T-shirt. You can also use built-in AI tools for great designs of your T-shirts.',
     projectImageURL: getImageURL('8.png'),
     projectRepoURL: 'https://github.com/Aarsh30/CustomizeAi',
     projectLiveURL: 'https://github.com/Aarsh30/CustomizeAi',
@@ -46,7 +46,7 @@ export default [
   {
     projectName: 'Food Frenzy',
     projectDescription:
-      'A platfrom which features Food items, User and Review and Order items at thier desire Locations.',
+      'A platform which features Food items, User and Review and Order items at their desired locations.',
     projectImageURL: getImageURL('10.png'),
     projectRepoURL: 'https://github.com/Aarsh30',
     projectLiveURL: 'https://github.com/Aarsh30',
@@ -54,7 +54,7 @@ export default [
   {
     projectName: 'NFC Based Payment System',
     projectDescription:
-      'This is Software + Hardware project which is buit for payment systems in which user does not required internet for transactions',
+      'This is a Software + Hardware project built for payment systems which does not require an internet connection for transactions.',
     projectImageURL: getImageURL('7.jpg'),
     projectRepoURL: 'https://github.com/Aarsh30',
     projectLiveURL: 'https://github.com/Aarsh30',

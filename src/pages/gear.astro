@@ -1,6 +1,7 @@
 ---
 import Layout from '@layouts/Layout.astro';
 import gearData from '@data/gearData';
+import booksData from '@data/booksData';
 ---
 
 <Layout>
@@ -8,80 +9,297 @@ import gearData from '@data/gearData';
 
     <!-- Hero -->
     <div class="gear-hero">
-      <span class="gear-tag">Tech Gear</span>
+      <span class="gear-tag">Tech Gear & Books</span>
       <h1 class="gear-title">My Setup & Recommendations</h1>
       <p class="gear-subtitle">
-        Everything I use daily as a software engineer and content creator.
-        Affiliate links — I earn a small commission at no extra cost to you.
+        Everything I use daily, upcoming upgrades, and my favorite self-help books.
+        Affiliate links — all affiliate income goes entirely towards helping needy people.
       </p>
     </div>
 
-    <!-- All categories as clean lists -->
-    <div class="gear-lists">
-      {gearData.map((cat) => (
-        <section class="gear-cat">
-
-          <!-- Category label -->
-          <div class="gear-cat-label">
-            <span>{cat.category}</span>
-          </div>
-
-          <!-- List rows -->
-          <ul class="gear-list">
-            {cat.items.map((item, i) => (
-              <li class="gear-row">
-                <div class="gear-row-left">
-                  <span class="gear-row-num">{String(i + 1).padStart(2, '0')}</span>
-                  <div class="gear-row-info">
-                    <span class="gear-row-name">{item.name}</span>
-                    {item.badge && <span class="gear-row-badge">{item.badge}</span>}
-                  </div>
-                </div>
-                <a
-                  href={item.affiliateUrl}
-                  target="_blank"
-                  rel="noopener noreferrer nofollow"
-                  class="gear-row-link"
-                  aria-label={`View ${item.name} on Amazon`}
-                >
-                  View on Amazon
-                  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" width="12" height="12">
-                    <path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </section>
-      ))}
-
-      <!-- Bottom note -->
-      <div class="gear-note">
-        <p class="gear-note-main">
-          If you purchase anything through these links, <strong>all affiliate income goes entirely towards the well-being of needy people.</strong>
-          Your purchase — at zero extra cost to you — directly helps someone in need.
-        </p>
-        <p class="gear-note-sub">
-          Thank you for your support. It means the world.
-          &nbsp;·&nbsp;
-          <a href="mailto:contactaarsh@yahoo.com">Say hi for collabs →</a>
-        </p>
+    <!-- Tabs Navigation -->
+    <div class="gear-tabs-container">
+      <div class="gear-tabs" role="tablist" aria-label="Gear categories">
+        <button class="gear-tab-btn active" role="tab" aria-selected="true" aria-controls="pane-setup" id="tab-setup">
+          <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+            <line x1="8" y1="21" x2="16" y2="21"></line>
+            <line x1="12" y1="17" x2="12" y2="21"></line>
+          </svg>
+          My Setup
+        </button>
+        <button class="gear-tab-btn" role="tab" aria-selected="false" aria-controls="pane-decor" id="tab-decor">
+          <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+            <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+            <line x1="6" y1="2" x2="6" y2="4"></line>
+            <line x1="10" y1="2" x2="10" y2="4"></line>
+            <line x1="14" y1="2" x2="14" y2="4"></line>
+          </svg>
+          Desk & Decor
+        </button>
+        <button class="gear-tab-btn" role="tab" aria-selected="false" aria-controls="pane-wishlist" id="tab-wishlist">
+          <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+          Tech Wishlist
+        </button>
+        <button class="gear-tab-btn" role="tab" aria-selected="false" aria-controls="pane-bookshelf" id="tab-bookshelf">
+          <svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+          </svg>
+          Bookshelf
+        </button>
       </div>
+    </div>
+
+    <!-- Tab Panes -->
+    <div class="gear-panes">
+      
+      <!-- Pane: My Setup (Tech Products) -->
+      <div class="gear-pane active" id="pane-setup" role="tabpanel" aria-labelledby="tab-setup">
+        <div class="gear-lists">
+          {gearData.filter(cat => cat.category === 'Tech Products').map((cat) => (
+            <section class="gear-cat">
+              <!-- Category label -->
+              <div class="gear-cat-label">
+                <span>{cat.category}</span>
+              </div>
+
+              <!-- List rows -->
+              <ul class="gear-list">
+                {cat.items.map((item, i) => (
+                  <li class="gear-row">
+                    <div class="gear-row-left">
+                      <span class="gear-row-num">{String(i + 1).padStart(2, '0')}</span>
+                      <div class="gear-row-info">
+                        <span class="gear-row-name">{item.name}</span>
+                        {item.badge && <span class="gear-row-badge">{item.badge}</span>}
+                      </div>
+                    </div>
+                    <a
+                      href={item.affiliateUrl}
+                      target="_blank"
+                      rel="noopener noreferrer nofollow"
+                      class="gear-row-link"
+                      aria-label={`View ${item.name} on Amazon`}
+                    >
+                      View on Amazon
+                      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" width="12" height="12">
+                        <path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
+      </div>
+
+      <!-- Pane: Desk & Decor (Desktop Accessories & Decor) -->
+      <div class="gear-pane" id="pane-decor" role="tabpanel" aria-labelledby="tab-decor">
+        <div class="gear-lists">
+          {gearData.filter(cat => cat.category === 'Desktop Accessories & Decor').map((cat) => (
+            <section class="gear-cat">
+              <!-- Category label -->
+              <div class="gear-cat-label">
+                <span>{cat.category}</span>
+              </div>
+
+              <!-- List rows -->
+              <ul class="gear-list">
+                {cat.items.map((item, i) => (
+                  <li class="gear-row">
+                    <div class="gear-row-left">
+                      <span class="gear-row-num">{String(i + 1).padStart(2, '0')}</span>
+                      <div class="gear-row-info">
+                        <span class="gear-row-name">{item.name}</span>
+                        {item.badge && <span class="gear-row-badge">{item.badge}</span>}
+                      </div>
+                    </div>
+                    <a
+                      href={item.affiliateUrl}
+                      target="_blank"
+                      rel="noopener noreferrer nofollow"
+                      class="gear-row-link"
+                      aria-label={`View ${item.name} on Amazon`}
+                    >
+                      View on Amazon
+                      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" width="12" height="12">
+                        <path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
+      </div>
+
+      <!-- Pane: Tech Wishlist (Upcoming Tech Upgrades) -->
+      <div class="gear-pane" id="pane-wishlist" role="tabpanel" aria-labelledby="tab-wishlist">
+        <div class="gear-lists">
+          {gearData.filter(cat => cat.category === 'Upcoming Tech Upgrades').map((cat) => (
+            <section class="gear-cat">
+              <!-- Category label -->
+              <div class="gear-cat-label">
+                <span>{cat.category}</span>
+              </div>
+
+              <!-- List rows -->
+              <ul class="gear-list">
+                {cat.items.map((item, i) => (
+                  <li class="gear-row">
+                    <div class="gear-row-left">
+                      <span class="gear-row-num">{String(i + 1).padStart(2, '0')}</span>
+                      <div class="gear-row-info">
+                        <span class="gear-row-name">{item.name}</span>
+                        {item.badge && <span class="gear-row-badge">{item.badge}</span>}
+                      </div>
+                    </div>
+                    <a
+                      href={item.affiliateUrl}
+                      target="_blank"
+                      rel="noopener noreferrer nofollow"
+                      class="gear-row-link"
+                      aria-label={`View ${item.name} on Amazon`}
+                    >
+                      View on Amazon
+                      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" width="12" height="12">
+                        <path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
+      </div>
+
+      <!-- Pane: Bookshelf (booksData grouped by category) -->
+      <div class="gear-pane" id="pane-bookshelf" role="tabpanel" aria-labelledby="tab-bookshelf">
+        <div class="gear-lists">
+          {booksData.map((cat) => (
+            <section class="gear-cat">
+              <!-- Category label -->
+              <div class="gear-cat-label">
+                <span>{cat.category}</span>
+              </div>
+
+              <!-- List rows -->
+              <ul class="gear-list">
+                {cat.books.map((book, i) => (
+                  <li class="gear-row">
+                    <div class="gear-row-left">
+                      <span class="gear-row-num">{String(i + 1).padStart(2, '0')}</span>
+                      <div class="gear-row-info">
+                        <span class="gear-row-name">{book.title}</span>
+                      </div>
+                    </div>
+                    <a
+                      href={book.affiliateUrl}
+                      target="_blank"
+                      rel="noopener noreferrer nofollow"
+                      class="gear-row-link"
+                      aria-label={`Buy ${book.title} on Amazon`}
+                    >
+                      Buy on Amazon
+                      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" width="12" height="12">
+                        <path d="M3 8h10M9 4l4 4-4 4" stroke-linecap="round" stroke-linejoin="round"/>
+                      </svg>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom note -->
+    <div class="gear-note">
+      <p class="gear-note-main">
+        If you purchase anything through these links, <strong>all affiliate income goes entirely towards the well-being of needy people.</strong>
+        Your purchase — at zero extra cost to you — directly helps someone in need.
+      </p>
+      <p class="gear-note-sub">
+        Thank you for your support. It means the world.
+        &nbsp;·&nbsp;
+        <a href="mailto:contactaarsh@yahoo.com">Say hi for collabs →</a>
+      </p>
     </div>
 
   </div>
 </Layout>
 
+<script>
+  // Setup client-side tab toggling
+  const setupTabs = () => {
+    const tabs = document.querySelectorAll('.gear-tab-btn');
+    const panes = document.querySelectorAll('.gear-pane');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Deactivate all tabs
+        tabs.forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+
+        // Hide all panes
+        panes.forEach(pane => {
+          pane.classList.remove('active');
+        });
+
+        // Activate selected tab
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+
+        // Show corresponding pane
+        const targetId = tab.getAttribute('aria-controls');
+        const targetPane = document.getElementById(targetId || '');
+        if (targetPane) {
+          targetPane.classList.add('active');
+        }
+      });
+    });
+  };
+
+  // Run on page load and support hydration reset if needed
+  setupTabs();
+  
+  // Also run setup when content is updated dynamically (e.g. view transitions)
+  document.addEventListener('astro:page-load', setupTabs);
+</script>
+
 <style>
   .gear-page {
     max-width: 760px;
     margin: 0 auto;
-    padding: 0 0.5rem 6rem;
+    padding: 0 1.5rem 6rem;
+  }
+
+  @media (min-width: 768px) {
+    .gear-page {
+      padding: 0 3rem 6rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .gear-page {
+      padding: 0 4rem 6rem;
+    }
   }
 
   /* ── Hero ─────────────────────────────────────── */
   .gear-hero {
-    padding: 4rem 0 3rem;
+    padding: 4rem 0 2rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -116,6 +334,77 @@ import gearData from '@data/gearData';
     line-height: 1.7;
     margin: 0;
     max-width: 520px;
+  }
+
+  /* ── Tabbed Interface ─────────────────────────── */
+  .gear-tabs-container {
+    margin: 1.5rem 0 2.5rem;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .gear-tabs {
+    display: inline-flex;
+    padding: 0.3rem;
+    background: var(--color-carbon-surface);
+    border: 1px solid var(--color-ferrite-border);
+    border-radius: 9999px;
+    gap: 0.3rem;
+    max-width: 100%;
+    overflow-x: auto;
+    scrollbar-width: none; /* Hide scrollbar for standard browsers */
+  }
+
+  .gear-tabs::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Safari/Chrome */
+  }
+
+  .gear-tab-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1.25rem;
+    border: none;
+    border-radius: 9999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-pewter-text);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    white-space: nowrap;
+    flex-shrink: 0;
+    outline: none;
+  }
+
+  .gear-tab-btn:hover {
+    color: var(--color-snow);
+    background: rgba(24, 138, 236, 0.05);
+  }
+
+  .gear-tab-btn.active {
+    color: #ffffff;
+    background: #188aec;
+    box-shadow: 0 4px 12px rgba(24, 138, 236, 0.25);
+  }
+
+  .tab-icon {
+    width: 15px;
+    height: 15px;
+    flex-shrink: 0;
+  }
+
+  .gear-pane {
+    display: none;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1), transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .gear-pane.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
   }
 
   /* ── Lists container ──────────────────────────── */
@@ -254,10 +543,8 @@ import gearData from '@data/gearData';
     border-radius: 14px;
     border: 1px solid rgba(24, 138, 236, 0.2);
     background: rgba(24, 138, 236, 0.04);
-    margin-top: 0.5rem;
+    margin-top: 3rem;
   }
-
-
 
   .gear-note-main {
     font-size: 0.87rem;
@@ -292,17 +579,8 @@ import gearData from '@data/gearData';
 
   /* ── Mobile Layout Adjustments ───────────────── */
   @media (max-width: 640px) {
-    .gear-row {
-      flex-direction: column;
-      align-items: stretch;
-      gap: 0.85rem;
-      padding: 1.25rem 1.1rem;
-    }
-    
-    .gear-row-link {
-      width: 100%;
-      justify-content: center;
-      padding: 0.45rem 1rem;
+    .gear-tabs-container {
+      justify-content: flex-start;
     }
   }
 </style>

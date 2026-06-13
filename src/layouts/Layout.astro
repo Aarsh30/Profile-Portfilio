@@ -6,6 +6,20 @@ import Footer from '@components/Footer.astro';
 import Bottombar from '@components/Bottombar.astro';
 import '@/base.css';
 
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: string;
+}
+
+const {
+  title = "Aarsh Patel — Software Engineer & Content Creator",
+  description = "Portfolio of Aarsh Patel, Software Engineer based in India specializing in Go, SwiftUI, Core Data, and AI Engineering. Founder of SWE180 & Swiftyn.",
+  image = "/assets/images/3d model.png",
+  type = "website"
+} = Astro.props;
+
 const animations = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0 },
@@ -23,7 +37,31 @@ const animations = {
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png" />
     <link rel="manifest" href="/assets/icons/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
-    <title>Aarsh Patel - Portfolio</title>
+    
+    <!-- Primary SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="author" content="Aarsh Patel" />
+    <meta name="keywords" content="Aarsh Patel, Software Engineer, iOS Developer, Go Developer, SwiftUI, Core Data, AI Engineering, Model Context Protocol, SWE180, Swiftyn, Vellore Institute of Technology, VIT" />
+    
+    <!-- OpenGraph / Facebook / LinkedIn Meta Tags -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content="https://aarshpatel.in/" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:site_name" content="Aarsh Patel Portfolio" />
+    
+    <!-- Twitter Meta Tags -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://aarshpatel.in/" />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={image} />
+    <meta property="twitter:site" content="@aarsh_30" />
+    <meta property="twitter:creator" content="@aarsh_30" />
+    
     <style>
       /* Glowing Orbs Animation */
       @keyframes float {

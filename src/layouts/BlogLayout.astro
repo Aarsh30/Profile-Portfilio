@@ -4,7 +4,7 @@ import Layout from './Layout.astro';
 const { frontmatter } = Astro.props;
 ---
 
-<Layout>
+<Layout title={`${frontmatter.title} | Aarsh Patel`} description={frontmatter.description} type="article">
   <!-- SEO & OpenGraph Meta Tags mapping can be added in Layout if supported, or placed here if we modify Layout.astro. 
        Currently, Layout.astro has a hardcoded title. For now, we will add content elements that are SEO rich. -->
   <article class="max-w-3xl mx-auto py-32 px-6 w-full min-h-screen">
