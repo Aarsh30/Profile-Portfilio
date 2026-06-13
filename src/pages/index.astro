@@ -12,6 +12,99 @@ import skillsData from '@data/skillsData';
 
 <Layout>
 
+<!-- Video Intro Screen -->
+<div id="video-intro-container" class="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#08090a] overflow-hidden select-none">
+  <video 
+    id="intro-video" 
+    src="/aarsh_video.mp4" 
+    class="w-full h-full object-cover" 
+    playsinline
+    webkit-playsinline
+    preload="auto"
+  ></video>
+
+  <!-- Play Overlay Screen -->
+  <div 
+    id="video-play-overlay" 
+    class="absolute inset-0 z-20 flex items-center p-8 md:p-16 bg-[#08090a]/50 backdrop-blur-[3px] transition-all duration-700 ease-out cursor-pointer"
+  >
+    <!-- Left text details -->
+    <div class="flex flex-col justify-center text-center md:text-left max-w-xl select-none z-30 w-full md:w-auto mb-16 md:mb-0">
+      <h1 class="text-snow font-inter font-extrabold text-4xl md:text-6xl lg:text-7xl leading-[1.1] tracking-tight mb-4 drop-shadow-lg">
+        Aarsh<br class="hidden md:block" /> Patel
+      </h1>
+      <p class="text-mist font-inter font-medium text-[10px] md:text-xs lg:text-sm uppercase tracking-[0.2em] opacity-90">
+        SOFTWARE ENGINEER &bull; CONTENT CREATOR &bull; MENTOR
+      </p>
+    </div>
+
+    <!-- Center Play Button -->
+    <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-30">
+      <div 
+        id="overlay-play-btn" 
+        class="flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-full border-2 border-snow/60 hover:border-snow text-snow bg-[#08090a]/30 backdrop-blur-md transition-all duration-300 hover:scale-110 pointer-events-auto cursor-pointer shadow-2xl relative"
+      >
+        <!-- Outer pulsing ring -->
+        <span class="absolute inset-0 rounded-full border-2 border-snow/20 animate-ping opacity-75"></span>
+        
+        <!-- Play Arrow SVG -->
+        <svg class="w-6 h-6 md:w-8 md:h-8 fill-current translate-x-0.5" viewBox="0 0 24 24">
+          <path d="M8 5v14l11-7z" />
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Controls overlay -->
+  <div class="absolute inset-0 flex flex-col justify-between p-6 md:p-10 pointer-events-none z-30">
+    <!-- Top bar (Logo & Sound Control) -->
+    <div class="flex justify-between items-center w-full pointer-events-auto">
+      <span class="text-snow font-inter font-[590] text-lg tracking-tight select-none opacity-85">
+        Aarsh Patel
+      </span>
+      <div class="flex items-center gap-3">
+        <!-- Sound Prompt Badge -->
+        <span 
+          id="sound-prompt-badge" 
+          class="hidden flex items-center gap-1.5 bg-snow text-[#08090a] font-inter font-semibold text-xs px-3 py-1.5 rounded-full shadow-lg opacity-90 transition-opacity duration-300 animate-pulse select-none"
+        >
+          🔊 Tap for Sound
+        </span>
+        <!-- Sound toggle -->
+        <button 
+          id="intro-sound-btn" 
+          class="flex items-center justify-center bg-carbon/50 hover:bg-carbon border border-ferrite/30 rounded-full w-10 h-10 text-snow backdrop-blur-md transition-all hover:scale-105 active:scale-95 cursor-pointer"
+          title="Toggle Sound"
+        >
+          <!-- Speaker Muted icon -->
+          <svg id="volume-icon-muted" class="w-5 h-5 hidden" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 9.75L19.5 12m0 0l2.25 2.25M19.5 12l2.25-2.25M19.5 12l-2.25 2.25m-10.5-6L4.5 9H1.5v6h3l4.5 3.75V5.25z" />
+          </svg>
+          <!-- Speaker Playing icon -->
+          <svg id="volume-icon-playing" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 01-1.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Bottom bar (Skip button) -->
+    <div class="flex justify-end items-center w-full pointer-events-auto">
+      <button 
+        id="intro-skip-btn" 
+        class="group flex items-center gap-2 bg-snow hover:bg-white text-[#08090a] font-inter font-semibold px-6 py-3 rounded-full shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 active:scale-95 cursor-pointer"
+      >
+        <span>Skip Intro</span>
+        <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="main-portfolio-wrapper">
+
 <!-- ═══════════════════════════════════════════════════════════════
      PARALLAX HERO — Full viewport height, 5 depth layers.
      Each layer has an id. JavaScript moves them at different
@@ -660,10 +753,51 @@ import skillsData from '@data/skillsData';
   </section>
 
 </div>
+</div>
 
 </Layout>
 
 <style>
+  /* ── Intro Video & Slide Up Styles ── */
+  #main-portfolio-wrapper {
+    will-change: transform, opacity;
+    transform: translateY(100vh);
+    opacity: 0;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s ease;
+  }
+  
+  #main-portfolio-wrapper.active {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  #video-intro-container {
+    will-change: transform, opacity;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s ease;
+  }
+
+  #video-intro-container.slide-up {
+    transform: translateY(-100vh);
+    opacity: 0;
+  }
+
+  :global(html.intro-active header) {
+    will-change: transform;
+    transform: translateY(-100%);
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  :global(html.intro-active.intro-complete header) {
+    transform: translateY(0);
+  }
+
+  :global(html.intro-active div.fixed.bottom-6) {
+    will-change: transform;
+    transform: translate(-50%, 150px) !important;
+    transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+  :global(html.intro-active.intro-complete div.fixed.bottom-6) {
+    transform: translate(-50%, 0) !important;
+  }
 
   /* ── Skills Bento Grid ─────────────────────────────── */
   .skills-bento {
@@ -1238,6 +1372,149 @@ import skillsData from '@data/skillsData';
 
 
 <script>
+// ── INTRO VIDEO & REVEAL SYSTEM ──
+(function() {
+  const videoContainer = document.getElementById('video-intro-container');
+  const mainWrapper = document.getElementById('main-portfolio-wrapper');
+  const video = document.getElementById('intro-video') as HTMLVideoElement | null;
+  const skipBtn = document.getElementById('intro-skip-btn');
+  const soundBtn = document.getElementById('intro-sound-btn');
+  const volMutedIcon = document.getElementById('volume-icon-muted');
+  const volPlayingIcon = document.getElementById('volume-icon-playing');
+  const soundPromptBadge = document.getElementById('sound-prompt-badge');
+  const playOverlay = document.getElementById('video-play-overlay');
+
+  if (!videoContainer || !mainWrapper) return;
+
+  // Add intro active class to html
+  document.documentElement.classList.add('intro-active');
+  document.body.classList.add('overflow-hidden');
+  document.documentElement.classList.add('overflow-hidden');
+
+  let transitionTriggered = false;
+  let fallbackTimeoutId: number | null = null;
+
+  function toggleMute(forceState?: boolean) {
+    if (!video) return;
+    
+    const shouldMute = forceState !== undefined ? forceState : !video.muted;
+    video.muted = shouldMute;
+    
+    if (shouldMute) {
+      volMutedIcon?.classList.remove('hidden');
+      volPlayingIcon?.classList.add('hidden');
+    } else {
+      volMutedIcon?.classList.add('hidden');
+      volPlayingIcon?.classList.remove('hidden');
+      soundPromptBadge?.classList.add('hidden');
+    }
+  }
+
+  // Initial state: Keep video paused at the start frame on launch
+  if (video) {
+    video.muted = true;
+    volMutedIcon?.classList.remove('hidden');
+    volPlayingIcon?.classList.add('hidden');
+    video.pause();
+  }
+
+  function startWithSound() {
+    if (!video) return;
+
+    // Fade out overlay screen
+    if (playOverlay) {
+      playOverlay.classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    // Restart video to the beginning
+    video.currentTime = 0;
+    
+    // Play video unmuted
+    toggleMute(false);
+    video.play().catch((err) => {
+      console.error("Play with sound failed:", err);
+      toggleMute(false);
+    });
+
+    // Start safety fallback timer ONLY after video starts playing
+    // Fallback to 30 seconds if duration is not available/NaN
+    const duration = (video.duration && !isNaN(video.duration)) ? video.duration : 30;
+    const safetyDuration = (duration * 1000) + 4000; // video duration + 4 seconds buffer
+    
+    fallbackTimeoutId = window.setTimeout(() => {
+      if (!transitionTriggered) {
+        console.warn("Safety fallback triggered: video play exceeded expected duration.");
+        triggerReveal();
+      }
+    }, safetyDuration);
+  }
+
+  function triggerReveal() {
+    if (transitionTriggered) return;
+    transitionTriggered = true;
+
+    // Clear the fallback timeout if it exists
+    if (fallbackTimeoutId !== null) {
+      clearTimeout(fallbackTimeoutId);
+      fallbackTimeoutId = null;
+    }
+
+    // Trigger slide up class transitions
+    videoContainer?.classList.add('slide-up');
+    mainWrapper?.classList.add('active');
+    document.documentElement.classList.add('intro-complete');
+
+    // Pause video to save CPU/resources
+    if (video) {
+      video.pause();
+    }
+
+    // Wait for slide up transition to complete
+    setTimeout(() => {
+      // Remove elements / classes to clean up DOM and allow scrolling
+      videoContainer?.remove();
+      document.documentElement.classList.remove('intro-active', 'intro-complete');
+      document.body.classList.remove('overflow-hidden');
+      document.documentElement.classList.remove('overflow-hidden');
+    }, 1200); // matches the 1.2s transition duration
+  }
+
+  // Event listeners
+  if (video) {
+    // If video ends, trigger reveal
+    video.addEventListener('ended', triggerReveal);
+    
+    // Safety fallback: if video fails to load or play
+    video.addEventListener('error', triggerReveal);
+  }
+
+  if (skipBtn) {
+    skipBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      triggerReveal();
+    });
+  }
+
+  if (soundBtn && video) {
+    soundBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMute();
+    });
+  }
+
+  // Clicking anywhere on the play overlay will play video unmuted from start
+  if (playOverlay) {
+    playOverlay.addEventListener('click', (e) => {
+      const target = e.target as HTMLElement;
+      // Do not trigger play if skip or sound buttons are clicked
+      if (skipBtn && skipBtn.contains(target)) return;
+      if (soundBtn && soundBtn.contains(target)) return;
+      
+      startWithSound();
+    });
+  }
+})();
+
 // ═══════════════════════════════════════════════════════
 //  PARALLAX ENGINE
 //  5 layers, each with a distinct depth factor.
